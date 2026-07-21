@@ -412,32 +412,26 @@ a.contact-line:hover {
 
 main section[id],
 .gallery-block[id] {
-  scroll-margin-top: 78px;
+  scroll-margin-top: 96px;
 }
 
-/* Scroll reveal transitions, activated by the small script in index.html. */
+/* Scroll reveal — opacity only (no transform), so hash nav stays accurate. */
 .reveal-section {
   opacity: 0;
-  transform: translateY(34px);
-  transition:
-    opacity 0.75s ease,
-    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.7s ease;
 }
 
 .reveal-section.is-visible {
   opacity: 1;
-  transform: translateY(0);
 }
 
 .reveal-section .section-bar h2 {
   opacity: 0;
-  letter-spacing: 0.4em;
-  transition: opacity 0.65s ease 0.12s, letter-spacing 0.8s ease 0.12s;
+  transition: opacity 0.55s ease 0.08s;
 }
 
 .reveal-section.is-visible .section-bar h2 {
   opacity: 1;
-  letter-spacing: 0.28em;
 }
 
 .content-block.alt {
@@ -446,10 +440,11 @@ main section[id],
 
 .section-bar {
   background: var(--black);
-  padding: 1rem 5vw;
+  padding: 1.05rem 5vw;
   text-align: center;
   border-top: 1px solid rgba(212, 175, 55, 0.25);
   border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+  overflow: visible;
 }
 
 .section-bar h2 {
@@ -459,6 +454,7 @@ main section[id],
   font-weight: 700;
   letter-spacing: 0.28em;
   text-indent: 0.28em;
+  line-height: 1.35;
 }
 
 .content-inner {

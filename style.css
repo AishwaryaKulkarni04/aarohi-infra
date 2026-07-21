@@ -67,6 +67,8 @@ textarea {
   background: rgba(10, 10, 10, 0.92);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .logo {
@@ -112,6 +114,7 @@ textarea {
 }
 
 .nav a {
+  position: relative;
   padding: 0.5rem 0.75rem;
   color: var(--muted);
   font-size: 0.75rem;
@@ -120,8 +123,31 @@ textarea {
   transition: 0.25s ease;
 }
 
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.15rem;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-light));
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.55);
+}
+
 .nav a:hover {
   color: var(--gold);
+}
+
+.nav a:hover::after,
+.nav a.active::after {
+  transform: scaleX(1);
+}
+
+.nav a.active {
+  color: var(--gold-light);
 }
 
 .nav-cta {
@@ -131,6 +157,15 @@ textarea {
 }
 
 .nav-cta:hover {
+  background: var(--gold);
+  color: var(--black) !important;
+}
+
+.nav-cta::after {
+  bottom: -0.38rem !important;
+}
+
+.nav-cta.active {
   background: var(--gold);
   color: var(--black) !important;
 }
@@ -335,6 +370,36 @@ a.contact-line:hover {
 .content-block {
   background: var(--off-white);
   color: var(--text-dark);
+}
+
+main section[id],
+.gallery-block[id] {
+  scroll-margin-top: 78px;
+}
+
+/* Scroll reveal transitions, activated by the small script in index.html. */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(34px);
+  transition:
+    opacity 0.75s ease,
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-section .section-bar h2 {
+  opacity: 0;
+  letter-spacing: 0.4em;
+  transition: opacity 0.65s ease 0.12s, letter-spacing 0.8s ease 0.12s;
+}
+
+.reveal-section.is-visible .section-bar h2 {
+  opacity: 1;
+  letter-spacing: 0.28em;
 }
 
 .content-block.alt {

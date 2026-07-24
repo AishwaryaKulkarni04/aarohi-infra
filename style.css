@@ -21,6 +21,10 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --motion-y: 52px;
   --motion-dur: 0.95s;
+  --section-bg: #0c0c0c;
+  --section-bg-alt: #111111;
+  --section-surface: #181818;
+  --section-surface-raised: #1f1f1f;
 }
 
 *,
@@ -31,6 +35,9 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+  width: 100%;
 }
 
 body {
@@ -40,6 +47,27 @@ body {
   background: var(--black);
   line-height: 1.65;
   overflow-x: hidden;
+  overscroll-behavior-x: none;
+  touch-action: pan-y pinch-zoom;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  position: relative;
+}
+
+main {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+.site-header,
+.site-footer,
+.content-block,
+.gallery-block,
+.contact,
+.cover {
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 .scroll-progress {
@@ -310,11 +338,13 @@ textarea {
 
 .cover-glow {
   position: absolute;
-  width: 520px;
-  height: 520px;
+  width: min(520px, 90vw);
+  height: min(520px, 90vw);
   border-radius: 50%;
   background: radial-gradient(circle, rgba(212, 175, 55, 0.16), transparent 68%);
   top: 14%;
+  left: 50%;
+  translate: -50% 0;
   pointer-events: none;
   will-change: transform;
   animation: glow-pulse 6s ease-in-out infinite;
@@ -327,7 +357,7 @@ textarea {
 
 .cover-grid {
   position: absolute;
-  inset: -10%;
+  inset: 0;
   background-image:
     linear-gradient(rgba(212, 175, 55, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(212, 175, 55, 0.035) 1px, transparent 1px);
@@ -646,8 +676,17 @@ a.contact-line:hover {
 
 /* ---------- Shared content blocks ---------- */
 .content-block {
-  background: var(--off-white);
-  color: var(--text-dark);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.06) 0%, transparent 55%),
+    var(--section-bg);
+  color: var(--white);
+  border-top: 1px solid rgba(212, 175, 55, 0.12);
+}
+
+.content-block.alt {
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+    var(--section-bg-alt);
 }
 
 main section[id],
@@ -817,15 +856,12 @@ main section[id],
   z-index: 1;
 }
 
-.content-block.alt {
-  background: #ececec;
-}
-
 .content-inner {
   max-width: 820px;
   margin: 0 auto;
   padding: 3.25rem 5vw 3.75rem;
   text-align: center;
+  width: 100%;
 }
 
 .content-inner.wide {
@@ -833,14 +869,14 @@ main section[id],
 }
 
 .content-inner p {
-  color: var(--text-soft);
+  color: var(--muted);
   font-size: 1.02rem;
   line-height: 1.85;
   margin: 0 0 1.35rem;
 }
 
 .highlight-line {
-  color: var(--text-dark) !important;
+  color: var(--white) !important;
   font-weight: 600;
 }
 
@@ -848,7 +884,7 @@ main section[id],
   margin: 2rem 0 0 !important;
   font-family: var(--display);
   font-style: italic;
-  color: var(--gold-deep) !important;
+  color: var(--gold-light) !important;
   letter-spacing: 0.08em;
   font-size: 1.05rem;
   transition: letter-spacing 0.5s var(--ease-out), color 0.5s ease;
@@ -866,15 +902,20 @@ main section[id],
 }
 
 .section-note {
-  color: var(--text-soft);
+  color: var(--muted);
   font-size: 0.95rem !important;
   margin-bottom: 1.8rem !important;
+}
+
+.team-intro {
+  color: rgba(255, 255, 255, 0.82);
 }
 
 /* ---------- Management ---------- */
 .management-section {
   background:
-    linear-gradient(180deg, #ececec 0%, #e4e4e4 100%);
+    radial-gradient(ellipse at 20% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+    var(--section-bg-alt);
 }
 
 .team-intro {
@@ -940,7 +981,7 @@ main section[id],
   text-align: center;
   padding: 0;
   border: 1px solid rgba(212, 175, 55, 0.45);
-  background: var(--white);
+  background: var(--section-surface);
   overflow: hidden;
   transition:
     transform 0.45s var(--ease-out),
@@ -985,7 +1026,7 @@ main section[id],
 
 .team-card:hover {
   border-color: var(--gold);
-  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(212, 175, 55, 0.2);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.45), 0 0 24px rgba(212, 175, 55, 0.12);
 }
 
 .team-photo-wrap {
@@ -1016,18 +1057,18 @@ main section[id],
   border-radius: 2px;
   overflow: hidden;
   border: none;
-  background: #ececec;
+  background: var(--section-surface-raised);
   box-shadow:
-    0 0 0 3px #ffffff,
+    0 0 0 3px rgba(212, 175, 55, 0.35),
     0 0 0 4px rgba(212, 175, 55, 0.7),
-    0 10px 24px rgba(0, 0, 0, 0.28);
+    0 10px 24px rgba(0, 0, 0, 0.45);
   transition:
     transform 0.5s var(--ease-out),
     box-shadow 0.45s ease;
 }
 
 .team-photo.passport-photo {
-  background: linear-gradient(180deg, #f2f2f2 0%, #e6e6e6 100%);
+  background: linear-gradient(180deg, #1a1a1a 0%, #111111 100%);
   border: none;
 }
 
@@ -1039,8 +1080,8 @@ main section[id],
   font-size: 0.58rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--gold-deep);
-  opacity: 0.75;
+  color: var(--gold);
+  opacity: 0.85;
   text-align: center;
   padding: 0 0.35rem;
   line-height: 1.35;
@@ -1064,45 +1105,45 @@ main section[id],
     opacity: 0;
     transform: scale(0.88) translateY(8px);
     box-shadow:
-      0 0 0 3px #ffffff,
+      0 0 0 3px rgba(212, 175, 55, 0.2),
       0 0 0 4px rgba(212, 175, 55, 0),
-      0 4px 12px rgba(0, 0, 0, 0.1);
+      0 4px 12px rgba(0, 0, 0, 0.35);
   }
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
     box-shadow:
-      0 0 0 3px #ffffff,
+      0 0 0 3px rgba(212, 175, 55, 0.35),
       0 0 0 4px rgba(212, 175, 55, 0.7),
-      0 10px 24px rgba(0, 0, 0, 0.28);
+      0 10px 24px rgba(0, 0, 0, 0.45);
   }
 }
 
 .team-card:hover .team-photo {
   box-shadow:
-    0 0 0 3px #ffffff,
+    0 0 0 3px var(--gold),
     0 0 0 5px var(--gold-light),
-    0 14px 32px rgba(0, 0, 0, 0.32);
+    0 14px 32px rgba(0, 0, 0, 0.45);
   transform: scale(1.03);
 }
 
 .team-card .team-photo.photo-placeholder:hover {
   transform: scale(1.03);
   box-shadow:
-    0 0 0 3px #ffffff,
+    0 0 0 3px var(--gold),
     0 0 0 5px var(--gold-light),
-    0 14px 32px rgba(0, 0, 0, 0.32);
+    0 14px 32px rgba(0, 0, 0, 0.45);
 }
 
 .team-meta {
   width: 100%;
   padding: 1.1rem 1rem 1.35rem;
-  background: var(--white);
+  background: var(--section-surface-raised);
 }
 
 .team-meta h3 {
   margin: 0 0 0.35rem;
-  color: var(--black);
+  color: var(--white);
   font-family: var(--display);
   font-size: 1.35rem;
   font-weight: 600;
@@ -1111,13 +1152,13 @@ main section[id],
 }
 
 .team-card:hover .team-meta h3 {
-  color: var(--gold-deep);
+  color: var(--gold-light);
 }
 
 .team-role,
 .team-meta p {
   margin: 0 !important;
-  color: var(--gold-deep) !important;
+  color: var(--gold) !important;
   font-size: 0.78rem !important;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -1213,18 +1254,18 @@ main section[id],
 /* ---------- Photo placeholders ---------- */
 .photo-placeholder {
   background:
-    linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(0, 0, 0, 0.04)),
+    linear-gradient(135deg, rgba(212, 175, 55, 0.06), rgba(0, 0, 0, 0.25)),
     repeating-linear-gradient(
       -45deg,
       transparent,
       transparent 8px,
-      rgba(212, 175, 55, 0.06) 8px,
-      rgba(212, 175, 55, 0.06) 16px
+      rgba(212, 175, 55, 0.04) 8px,
+      rgba(212, 175, 55, 0.04) 16px
     );
-  border: 1px dashed rgba(212, 175, 55, 0.55);
+  border: 1px dashed rgba(212, 175, 55, 0.45);
   display: grid;
   place-items: center;
-  color: var(--gold-deep);
+  color: var(--gold);
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1244,7 +1285,7 @@ main section[id],
 
 .photo-placeholder:hover {
   transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
 }
 
 .photo-placeholder:hover::after {
@@ -1268,12 +1309,14 @@ main section[id],
 .project-slider {
   position: relative;
   margin-top: 0.5rem;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .project-slider-viewport {
   overflow: hidden;
-  border: 1px solid rgba(212, 175, 55, 0.35);
-  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  background: rgba(0, 0, 0, 0.35);
   padding: 0.85rem;
   touch-action: pan-y pinch-zoom;
   cursor: grab;
@@ -1308,9 +1351,17 @@ main section[id],
   grid-template-columns: unset;
   gap: 0.85rem;
   padding: 0;
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  background: #fff;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  background: var(--section-surface);
   overflow: hidden;
+}
+
+.project-slider-track .project-card-text h3 {
+  color: var(--white);
+}
+
+.project-slider-track .project-card-text p {
+  color: var(--gold) !important;
 }
 
 .project-slider-track .project-thumb {
@@ -1395,7 +1446,7 @@ main section[id],
 .slider-dot-fill {
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.42);
+  background: rgba(212, 175, 55, 0.55);
   transform: scaleX(0);
   transform-origin: left center;
   border-radius: inherit;
@@ -1435,8 +1486,8 @@ main section[id],
   gap: 1rem;
   align-items: center;
   padding: 0.75rem;
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  background: #fff;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  background: var(--section-surface);
   transition:
     transform 0.35s var(--ease-out),
     border-color 0.3s ease,
@@ -1473,21 +1524,23 @@ main section[id],
 
 .project-card-text h3 {
   margin: 0 0 0.35rem;
-  color: var(--text-dark);
+  color: var(--white);
   font-size: 1rem;
 }
 
 .project-card-text p {
   margin: 0 !important;
-  color: var(--gold-deep) !important;
+  color: var(--gold) !important;
   font-size: 0.82rem !important;
 }
 
 /* ---------- Projects table ---------- */
 .table-wrap {
   overflow-x: auto;
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  background: #fff;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  background: var(--section-surface);
 }
 
 .projects-table {
@@ -1495,14 +1548,19 @@ main section[id],
   border-collapse: collapse;
   font-size: 0.88rem;
   min-width: 760px;
+  color: var(--muted);
 }
 
 .projects-table th,
 .projects-table td {
   padding: 0.85rem 0.75rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
   text-align: left;
   vertical-align: top;
+}
+
+.projects-table td {
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .projects-table th {
@@ -1519,7 +1577,11 @@ main section[id],
 }
 
 .projects-table tbody tr:hover {
-  background: rgba(212, 175, 55, 0.06);
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.projects-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .status {
@@ -1532,8 +1594,8 @@ main section[id],
 }
 
 .status.done {
-  background: rgba(212, 175, 55, 0.18);
-  color: var(--gold-deep);
+  background: rgba(212, 175, 55, 0.2);
+  color: var(--gold-light);
 }
 
 .status.progress {
@@ -1543,11 +1605,20 @@ main section[id],
 
 /* ---------- Project galleries ---------- */
 .project-galleries {
-  background: var(--off-white);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.05) 0%, transparent 55%),
+    var(--section-bg);
+  border-top: 1px solid rgba(212, 175, 55, 0.12);
 }
 
 .gallery-block {
   padding-bottom: 2.5rem;
+  background: var(--section-bg);
+  border-top: 1px solid rgba(212, 175, 55, 0.08);
+}
+
+.gallery-block:nth-child(even) {
+  background: var(--section-bg-alt);
 }
 
 .gallery-grid {
@@ -1756,6 +1827,31 @@ main section[id],
   .site-header {
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 100%;
+  }
+
+  .cover-glow {
+    width: min(320px, 85vw);
+    height: min(320px, 85vw);
+  }
+
+  .cover-line:first-child {
+    right: calc(50% + 72px);
+  }
+
+  .cover-line:last-child {
+    left: calc(50% + 72px);
+  }
+
+  .motion-from-left,
+  .motion-from-right {
+    transform: translateY(var(--motion-y)) scale(0.94);
+  }
+
+  .motion-item.motion-in,
+  .contact-info > *.motion-in,
+  .motion-footer > *.motion-in {
+    transform: translateY(0) scale(1);
   }
 
   .site-header .logo {
@@ -1765,8 +1861,11 @@ main section[id],
   .nav {
     order: 3;
     width: 100%;
+    max-width: 100%;
     justify-content: flex-start;
     overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
   }
 
   .cover-contacts {

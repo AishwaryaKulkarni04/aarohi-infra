@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>AAROHI Infra — Building The Future · Restoring The Past</title>
   <meta name="description" content="AAROHI Infra — general contractor in Nashik. Commercial, residential & industrial construction since 2019." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=12" />
+  <link rel="stylesheet" href="style.css?v=15" />
 </head>
 <body>
   <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -529,7 +529,7 @@
           </ul>
         </div>
 
-        <form id="whatsapp-enquiry" class="contact-form" action="https://wa.me/9665104047" method="get" target="_blank">
+        <form id="whatsapp-enquiry" class="contact-form" action="#" method="get">
           <label>
             <span>Name</span>
             <input type="text" name="name" placeholder="Your name" required />
@@ -560,6 +560,11 @@
   <script>
     const enquiryForm = document.querySelector("#whatsapp-enquiry");
     const navLinks = [...document.querySelectorAll(".nav a[href^='#']")];
+    const WHATSAPP_ENQUIRY_NUMBERS = [
+      "919423038802",
+      "919665104047",
+      "918007217373"
+    ];
 
     enquiryForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -575,11 +580,15 @@
         formData.get("text")
       ].join("\n");
 
-      window.open(
-        `https://wa.me/919665104047?text=${encodeURIComponent(message)}`,
-        "_blank",
-        "noopener"
-      );
+      const encodedMessage = encodeURIComponent(message);
+
+      WHATSAPP_ENQUIRY_NUMBERS.forEach((number) => {
+        window.open(
+          `https://wa.me/${number}?text=${encodedMessage}`,
+          "_blank",
+          "noopener,noreferrer"
+        );
+      });
     });
 
     const setActiveNav = (sectionId) => {
@@ -889,9 +898,14 @@
         }
       }
 
+      function clampOffset(offset) {
+        const maxOffset = maxIndex() * slideStep();
+        return Math.min(Math.max(0, offset), maxOffset);
+      }
+
       function setTrackOffset(pixels, animate = true) {
         track.classList.toggle("is-dragging", !animate);
-        track.style.transform = `translate3d(-${pixels}px, 0, 0)`;
+        track.style.transform = `translate3d(-${clampOffset(pixels)}px, 0, 0)`;
       }
 
       function restartSlideTimer() {
@@ -962,7 +976,7 @@
         dragCurrentX = pointerX(event);
         const delta = dragCurrentX - dragStartX;
         if (Math.abs(delta) > 8) wasDragged = true;
-        setTrackOffset(Math.max(0, baseOffset - delta), false);
+        setTrackOffset(clampOffset(baseOffset - delta), false);
       }
 
       function onDragEnd(event) {
@@ -1050,6 +1064,31 @@
     }
 
     initProjectSlider();
+
+    /* Prevent horizontal page swipe / rubber-band on mobile */
+    let pageTouchStartX = 0;
+    let pageTouchStartY = 0;
+
+    document.addEventListener("touchstart", (event) => {
+      pageTouchStartX = event.touches[0].clientX;
+      pageTouchStartY = event.touches[0].clientY;
+    }, { passive: true });
+
+    document.addEventListener("touchmove", (event) => {
+      const touch = event.touches[0];
+      const deltaX = Math.abs(touch.clientX - pageTouchStartX);
+      const deltaY = Math.abs(touch.clientY - pageTouchStartY);
+
+      if (deltaX <= deltaY || deltaX < 12) return;
+
+      const allowed = event.target.closest(
+        ".project-slider-viewport, .table-wrap, .nav"
+      );
+
+      if (!allowed) {
+        event.preventDefault();
+      }
+    }, { passive: false });
   </script>
 </body>
 </html>

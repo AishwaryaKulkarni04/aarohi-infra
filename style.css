@@ -453,12 +453,11 @@ textarea {
   inset: 0;
   pointer-events: none;
   overflow: hidden;
+  z-index: 0;
 }
 
 .cover-particles span {
   position: absolute;
-  width: 3px;
-  height: 3px;
   border-radius: 50%;
   background: var(--gold-light);
   box-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
@@ -466,18 +465,79 @@ textarea {
   animation: particle-rise 10s ease-in infinite;
 }
 
-.cover-particles span:nth-child(1) { left: 15%; bottom: -5%; animation-delay: 0s; }
-.cover-particles span:nth-child(2) { left: 32%; bottom: -5%; animation-delay: 1.5s; }
-.cover-particles span:nth-child(3) { left: 50%; bottom: -5%; animation-delay: 3s; }
-.cover-particles span:nth-child(4) { left: 68%; bottom: -5%; animation-delay: 0.8s; }
-.cover-particles span:nth-child(5) { left: 82%; bottom: -5%; animation-delay: 2.2s; }
-.cover-particles span:nth-child(6) { left: 42%; bottom: -5%; animation-delay: 4s; }
+.cover-particles span:nth-child(odd) {
+  width: 3px;
+  height: 3px;
+}
+
+.cover-particles span:nth-child(even) {
+  width: 2px;
+  height: 2px;
+  box-shadow: 0 0 8px rgba(240, 215, 140, 0.65);
+}
+
+.cover-particles span:nth-child(1) { left: 8%; bottom: -5%; animation-delay: 0s; --drift: 12px; animation-duration: 9s; }
+.cover-particles span:nth-child(2) { left: 18%; bottom: -5%; animation-delay: 1.2s; --drift: -10px; animation-duration: 11s; }
+.cover-particles span:nth-child(3) { left: 28%; bottom: -5%; animation-delay: 2.4s; --drift: 14px; animation-duration: 10s; }
+.cover-particles span:nth-child(4) { left: 38%; bottom: -5%; animation-delay: 0.6s; --drift: -8px; animation-duration: 12s; }
+.cover-particles span:nth-child(5) { left: 48%; bottom: -5%; animation-delay: 3s; --drift: 10px; animation-duration: 9.5s; }
+.cover-particles span:nth-child(6) { left: 58%; bottom: -5%; animation-delay: 1.8s; --drift: -12px; animation-duration: 11.5s; }
+.cover-particles span:nth-child(7) { left: 68%; bottom: -5%; animation-delay: 0.3s; --drift: 9px; animation-duration: 10.5s; }
+.cover-particles span:nth-child(8) { left: 78%; bottom: -5%; animation-delay: 2.7s; --drift: -11px; animation-duration: 12.5s; }
+.cover-particles span:nth-child(9) { left: 88%; bottom: -5%; animation-delay: 1.5s; --drift: 13px; animation-duration: 9.8s; }
+.cover-particles span:nth-child(10) { left: 14%; bottom: -5%; animation-delay: 3.6s; --drift: -7px; animation-duration: 11.2s; }
+.cover-particles span:nth-child(11) { left: 24%; bottom: -5%; animation-delay: 4.2s; --drift: 11px; animation-duration: 10.8s; }
+.cover-particles span:nth-child(12) { left: 52%; bottom: -5%; animation-delay: 4.8s; --drift: -9px; animation-duration: 12.2s; }
+.cover-particles span:nth-child(13) { left: 62%; bottom: -5%; animation-delay: 5.2s; --drift: 8px; animation-duration: 9.2s; }
+.cover-particles span:nth-child(14) { left: 72%; bottom: -5%; animation-delay: 5.8s; --drift: -13px; animation-duration: 11.8s; }
+.cover-particles span:nth-child(15) { left: 34%; bottom: -5%; animation-delay: 6.2s; --drift: 15px; animation-duration: 10.2s; }
+.cover-particles span:nth-child(16) { left: 84%; bottom: -5%; animation-delay: 6.8s; --drift: -6px; animation-duration: 12.8s; }
+.cover-particles span:nth-child(17) { left: 44%; bottom: -5%; animation-delay: 7.2s; --drift: 10px; animation-duration: 9.6s; }
+.cover-particles span:nth-child(18) { left: 92%; bottom: -5%; animation-delay: 7.8s; --drift: -14px; animation-duration: 11.4s; }
+
+.cover-embers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.cover-embers span {
+  position: absolute;
+  width: 4px;
+  height: 14px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: linear-gradient(to top, rgba(212, 175, 55, 0.85), rgba(240, 215, 140, 0.15));
+  box-shadow: 0 0 14px rgba(212, 175, 55, 0.55), 0 0 28px rgba(212, 175, 55, 0.2);
+  opacity: 0;
+  filter: blur(0.5px);
+  animation: ember-rise 13s ease-in infinite;
+}
+
+.cover-embers span:nth-child(1) { left: 12%; bottom: -8%; animation-delay: 0.4s; --drift: 18px; }
+.cover-embers span:nth-child(2) { left: 26%; bottom: -8%; animation-delay: 2.1s; --drift: -16px; animation-duration: 15s; }
+.cover-embers span:nth-child(3) { left: 41%; bottom: -8%; animation-delay: 4.5s; --drift: 20px; animation-duration: 12s; }
+.cover-embers span:nth-child(4) { left: 55%; bottom: -8%; animation-delay: 1.3s; --drift: -14px; animation-duration: 14s; }
+.cover-embers span:nth-child(5) { left: 69%; bottom: -8%; animation-delay: 3.8s; --drift: 17px; animation-duration: 13.5s; }
+.cover-embers span:nth-child(6) { left: 83%; bottom: -8%; animation-delay: 5.6s; --drift: -19px; animation-duration: 12.5s; }
+.cover-embers span:nth-child(7) { left: 20%; bottom: -8%; animation-delay: 6.4s; --drift: 12px; animation-duration: 16s; }
+.cover-embers span:nth-child(8) { left: 74%; bottom: -8%; animation-delay: 7.1s; --drift: -11px; animation-duration: 14.5s; }
 
 @keyframes particle-rise {
-  0% { opacity: 0; transform: translateY(0); }
-  12% { opacity: 0.9; }
-  88% { opacity: 0.4; }
-  100% { opacity: 0; transform: translateY(-105vh); }
+  0% { opacity: 0; transform: translate(0, 0) scale(0.6); }
+  12% { opacity: 0.95; }
+  50% { opacity: 0.7; transform: translate(var(--drift, 10px), -52vh) scale(1); }
+  88% { opacity: 0.3; }
+  100% { opacity: 0; transform: translate(calc(var(--drift, 10px) * -0.4), -105vh) scale(0.75); }
+}
+
+@keyframes ember-rise {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
+  10% { opacity: 0.85; }
+  45% { opacity: 0.65; transform: translate(var(--drift, 14px), -48vh) scale(1.05); }
+  85% { opacity: 0.25; }
+  100% { opacity: 0; transform: translate(calc(var(--drift, 14px) * -0.35), -108vh) scale(0.7); }
 }
 
 @keyframes orb-float {
@@ -909,6 +969,22 @@ main section[id],
 
 .team-intro {
   color: rgba(255, 255, 255, 0.82);
+  text-align: center !important;
+  max-width: 560px;
+  margin-inline: auto !important;
+  width: 100%;
+  display: block;
+}
+
+.management-section .content-inner.wide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.management-section .team-showcase,
+.management-section .gold-tag {
+  width: 100%;
 }
 
 /* ---------- Management ---------- */
@@ -916,14 +992,6 @@ main section[id],
   background:
     radial-gradient(ellipse at 20% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
     var(--section-bg-alt);
-}
-
-.team-intro {
-  text-align: center !important;
-  max-width: 560px;
-  margin-inline: auto;
-  width: 100%;
-  display: block;
 }
 
 .team-intro.motion-item {

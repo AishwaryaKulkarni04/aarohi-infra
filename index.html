@@ -529,7 +529,7 @@
           </ul>
         </div>
 
-        <form id="whatsapp-enquiry" class="contact-form" action="#" method="get">
+        <form id="whatsapp-enquiry" class="contact-form" action="https://wa.me/9665104047" method="get" target="_blank">
           <label>
             <span>Name</span>
             <input type="text" name="name" placeholder="Your name" required />
@@ -560,11 +560,6 @@
   <script>
     const enquiryForm = document.querySelector("#whatsapp-enquiry");
     const navLinks = [...document.querySelectorAll(".nav a[href^='#']")];
-    const WHATSAPP_ENQUIRY_NUMBERS = [
-      "919423038802",
-      "919665104047",
-      "918007217373"
-    ];
 
     enquiryForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -580,15 +575,11 @@
         formData.get("text")
       ].join("\n");
 
-      const encodedMessage = encodeURIComponent(message);
-
-      WHATSAPP_ENQUIRY_NUMBERS.forEach((number) => {
-        window.open(
-          `https://wa.me/${number}?text=${encodedMessage}`,
-          "_blank",
-          "noopener,noreferrer"
-        );
-      });
+      window.open(
+        `https://wa.me/919665104047?text=${encodeURIComponent(message)}`,
+        "_blank",
+        "noopener,noreferrer"
+      );
     });
 
     const setActiveNav = (sectionId) => {

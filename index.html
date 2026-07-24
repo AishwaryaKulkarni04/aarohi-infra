@@ -8,9 +8,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=12" />
 </head>
 <body>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
   <header class="site-header">
     <a href="#home" class="logo">
       <span class="logo-frame">
@@ -35,10 +36,22 @@
   <main>
     <!-- Cover -->
     <section id="home" class="cover">
-      <div class="cover-glow"></div>
-      <div class="cover-grid"></div>
+      <div class="cover-glow" data-parallax="0.12"></div>
+      <div class="cover-grid" data-parallax="0.04"></div>
+      <div class="cover-orbs" aria-hidden="true">
+        <span class="orb orb-1"></span>
+        <span class="orb orb-2"></span>
+        <span class="orb orb-3"></span>
+      </div>
+      <div class="cover-particles" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="cover-lines" aria-hidden="true">
+        <span class="cover-line"></span>
+        <span class="cover-line"></span>
+      </div>
 
-      <div class="cover-brand">
+      <div class="cover-brand" data-parallax="0.07" data-mouse-parallax="12">
         <div class="brand-frame">
           <img src="assets/logo.png" alt="AAROHI" class="brand-logo" />
         </div>
@@ -117,40 +130,49 @@
     </section>
 
     <!-- Management -->
-    <section id="management" class="content-block alt">
+    <section id="management" class="content-block alt management-section">
       <div class="section-bar">
         <h2>MANAGEMENT</h2>
       </div>
-      <div class="content-inner">
-        <div class="team-list">
+      <div class="content-inner wide">
+        <p class="section-note team-intro">The leadership team behind AAROHI Infra — engineering excellence, delivered with integrity.</p>
+
+        <div class="team-showcase motion-stagger">
           <article class="team-card">
-            <div class="team-photo photo-placeholder" aria-label="Photo placeholder for Ameya Jadhav">
-              <span>Photo</span>
+            <div class="team-photo-wrap">
+              <div class="team-photo photo-placeholder passport-photo" aria-label="Passport photo for Ameya Jadhav">
+                <span>Passport photo</span>
+              </div>
             </div>
             <div class="team-meta">
               <h3>Ameya Jadhav</h3>
-              <p>BE Civil</p>
+              <p class="team-role">BE Civil</p>
             </div>
           </article>
           <article class="team-card">
-            <div class="team-photo photo-placeholder" aria-label="Photo placeholder for Rohan Pathak">
-              <span>Photo</span>
+            <div class="team-photo-wrap">
+              <div class="team-photo photo-placeholder passport-photo" aria-label="Passport photo for Rohan Pathak">
+                <span>Passport photo</span>
+              </div>
             </div>
             <div class="team-meta">
               <h3>Rohan Pathak</h3>
-              <p>BE Civil</p>
+              <p class="team-role">BE Civil</p>
             </div>
           </article>
           <article class="team-card">
-            <div class="team-photo photo-placeholder" aria-label="Photo placeholder for Hitesh Shewale">
-              <span>Photo</span>
+            <div class="team-photo-wrap">
+              <div class="team-photo photo-placeholder passport-photo" aria-label="Passport photo for Hitesh Shewale">
+                <span>Passport photo</span>
+              </div>
             </div>
             <div class="team-meta">
               <h3>Hitesh Shewale</h3>
-              <p>BE Civil, MBA Finance</p>
+              <p class="team-role">BE Civil, MBA Finance</p>
             </div>
           </article>
         </div>
+
         <p class="gold-tag">Building The Future · Restoring The Past</p>
       </div>
     </section>
@@ -232,49 +254,63 @@
       <div class="content-inner wide">
         <p class="section-note">Project photos will be added here. Each card has space ready for images.</p>
 
-        <div class="project-cards">
-          <a href="#proj-hospital" class="project-card">
-            <div class="project-thumb photo-placeholder"><span>Image</span></div>
-            <div class="project-card-text">
-              <h3>Sub Divisional Hospital, Trimbak</h3>
-              <p>60L · Govt Contract · Completed</p>
+        <div class="project-slider" id="project-slider">
+          <div class="project-slider-viewport">
+            <div class="project-slider-track">
+              <a href="#proj-hospital" class="project-card">
+                <div class="project-thumb photo-placeholder"><span>Image</span></div>
+                <div class="project-card-text">
+                  <h3>Sub Divisional Hospital, Trimbak</h3>
+                  <p>60L · Govt Contract · Completed</p>
+                </div>
+              </a>
+              <a href="#proj-bliss" class="project-card">
+                <div class="project-thumb photo-placeholder"><span>Image</span></div>
+                <div class="project-card-text">
+                  <h3>Samarth Bliss</h3>
+                  <p>320L · Residential · Completed</p>
+                </div>
+              </a>
+              <a href="#proj-crown" class="project-card">
+                <div class="project-thumb photo-placeholder"><span>Image</span></div>
+                <div class="project-card-text">
+                  <h3>Samarth Crown</h3>
+                  <p>405L · Residential · Completed</p>
+                </div>
+              </a>
+              <a href="#proj-raj" class="project-card">
+                <div class="project-thumb photo-placeholder"><span>Image</span></div>
+                <div class="project-card-text">
+                  <h3>Raj Tower, Serene Medows</h3>
+                  <p>55L · Interior Work · Completed</p>
+                </div>
+              </a>
+              <a href="#proj-ssn" class="project-card">
+                <div class="project-thumb photo-placeholder"><span>Image</span></div>
+                <div class="project-card-text">
+                  <h3>SSN Engineering, Ambad</h3>
+                  <p>160L · Industrial · In Progress</p>
+                </div>
+              </a>
+              <a href="#proj-sushobh" class="project-card">
+                <div class="project-thumb photo-placeholder"><span>Image</span></div>
+                <div class="project-card-text">
+                  <h3>Sushobh Enterprises, Ambad</h3>
+                  <p>172L · Industrial · In Progress</p>
+                </div>
+              </a>
             </div>
-          </a>
-          <a href="#proj-bliss" class="project-card">
-            <div class="project-thumb photo-placeholder"><span>Image</span></div>
-            <div class="project-card-text">
-              <h3>Samarth Bliss</h3>
-              <p>320L · Residential · Completed</p>
-            </div>
-          </a>
-          <a href="#proj-crown" class="project-card">
-            <div class="project-thumb photo-placeholder"><span>Image</span></div>
-            <div class="project-card-text">
-              <h3>Samarth Crown</h3>
-              <p>405L · Residential · Completed</p>
-            </div>
-          </a>
-          <a href="#proj-raj" class="project-card">
-            <div class="project-thumb photo-placeholder"><span>Image</span></div>
-            <div class="project-card-text">
-              <h3>Raj Tower, Serene Medows</h3>
-              <p>55L · Interior Work · Completed</p>
-            </div>
-          </a>
-          <a href="#proj-ssn" class="project-card">
-            <div class="project-thumb photo-placeholder"><span>Image</span></div>
-            <div class="project-card-text">
-              <h3>SSN Engineering, Ambad</h3>
-              <p>160L · Industrial · In Progress</p>
-            </div>
-          </a>
-          <a href="#proj-sushobh" class="project-card">
-            <div class="project-thumb photo-placeholder"><span>Image</span></div>
-            <div class="project-card-text">
-              <h3>Sushobh Enterprises, Ambad</h3>
-              <p>172L · Industrial · In Progress</p>
-            </div>
-          </a>
+          </div>
+
+          <div class="project-slider-controls">
+            <button type="button" class="slider-btn slider-prev" aria-label="Previous projects">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4-4.6-4.6z"/></svg>
+            </button>
+            <div class="slider-dots" role="tablist" aria-label="Project slides"></div>
+            <button type="button" class="slider-btn slider-next" aria-label="Next projects">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m8.6 17.4 1.4 1.4 6-6-6-6-1.4 1.4 4.6 4.6z"/></svg>
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -383,7 +419,7 @@
         <div class="section-bar">
           <h2>SUB DIVISIONAL HOSPITAL, TRIMBAK</h2>
         </div>
-        <div class="gallery-grid">
+        <div class="gallery-grid motion-stagger">
           <div class="photo-placeholder tall"><span>Photo 1</span></div>
           <div class="photo-placeholder tall"><span>Photo 2</span></div>
           <div class="photo-placeholder tall"><span>Photo 3</span></div>
@@ -396,7 +432,7 @@
         <div class="section-bar">
           <h2>SAMARTH BLISS</h2>
         </div>
-        <div class="gallery-grid">
+        <div class="gallery-grid motion-stagger">
           <div class="photo-placeholder tall"><span>Photo 1</span></div>
           <div class="photo-placeholder tall"><span>Photo 2</span></div>
           <div class="photo-placeholder tall"><span>Photo 3</span></div>
@@ -410,7 +446,7 @@
         <div class="section-bar">
           <h2>SAMARTH CROWN</h2>
         </div>
-        <div class="gallery-grid">
+        <div class="gallery-grid motion-stagger">
           <div class="photo-placeholder tall"><span>Photo 1</span></div>
           <div class="photo-placeholder tall"><span>Photo 2</span></div>
           <div class="photo-placeholder tall"><span>Photo 3</span></div>
@@ -426,7 +462,7 @@
         <div class="section-bar">
           <h2>RAJ TOWER, SERENE MEDOWS</h2>
         </div>
-        <div class="gallery-grid">
+        <div class="gallery-grid motion-stagger">
           <div class="photo-placeholder tall"><span>Photo 1</span></div>
           <div class="photo-placeholder tall"><span>Photo 2</span></div>
           <div class="photo-placeholder tall"><span>Photo 3</span></div>
@@ -440,7 +476,7 @@
         <div class="section-bar">
           <h2>SSN ENGINEERING, AMBAD</h2>
         </div>
-        <div class="gallery-grid">
+        <div class="gallery-grid motion-stagger">
           <div class="photo-placeholder tall"><span>Photo 1</span></div>
           <div class="photo-placeholder tall"><span>Photo 2</span></div>
           <div class="photo-placeholder tall"><span>Photo 3</span></div>
@@ -456,7 +492,7 @@
         <div class="section-bar">
           <h2>SUSHOBH ENTERPRISES, AMBAD</h2>
         </div>
-        <div class="gallery-grid">
+        <div class="gallery-grid motion-stagger">
           <div class="photo-placeholder tall"><span>Photo 1</span></div>
           <div class="photo-placeholder tall"><span>Photo 2</span></div>
           <div class="photo-placeholder tall"><span>Photo 3</span></div>
@@ -512,7 +548,7 @@
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer motion-footer">
     <div class="footer-brand">
       <strong>AAROHI INFRA</strong>
       <span>Building The Future · Restoring The Past</span>
@@ -589,8 +625,16 @@
     navTargets.forEach((section) => activeSectionObserver.observe(section));
 
     navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
+      link.addEventListener("click", (event) => {
         const sectionId = link.getAttribute("href").slice(1);
+
+        if (sectionId === "home") {
+          event.preventDefault();
+          history.replaceState(null, "", "#home");
+          replayHeroMount();
+          return;
+        }
+
         setActiveNav(sectionId);
 
         const target = document.getElementById(sectionId);
@@ -600,25 +644,412 @@
       });
     });
 
+    function replayAnimation(elements) {
+      elements.forEach((el) => {
+        el.style.animation = "none";
+        void el.offsetWidth;
+        el.style.animation = "";
+      });
+    }
+
+    function replayHeroMount() {
+      const home = document.querySelector("#home");
+      if (!home) return;
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      replayAnimation(home.querySelectorAll(
+        ".brand-frame, .brand-infra, .tagline, .scroll-hint, .cover-contacts .contact-line, .cover-line"
+      ));
+      replayAnimation(document.querySelectorAll(".site-header, .nav a"));
+
+      const brand = home.querySelector("[data-mouse-parallax]");
+      if (brand) brand.style.transform = "";
+
+      setActiveNav("home");
+    }
+
+    document.querySelectorAll('a[href="#home"]').forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        history.replaceState(null, "", "#home");
+        replayHeroMount();
+      });
+    });
+
+    window.addEventListener("load", () => {
+      const navEntry = performance.getEntriesByType("navigation")[0];
+      const isReload = navEntry?.type === "reload";
+
+      if (isReload && (!window.location.hash || window.location.hash === "#home")) {
+        window.scrollTo(0, 0);
+        requestAnimationFrame(replayHeroMount);
+      }
+    });
+
+    window.addEventListener("pageshow", (event) => {
+      if (event.persisted && (!window.location.hash || window.location.hash === "#home")) {
+        replayHeroMount();
+      }
+    });
+
     const revealItems = document.querySelectorAll(
-      ".content-block, .gallery-block, .contact"
+      ".content-block, .gallery-block, .contact, .site-footer"
     );
 
     revealItems.forEach((item) => item.classList.add("reveal-section"));
 
-    const revealObserver = new IntersectionObserver((entries, observer) => {
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
+        entry.target.classList.toggle("is-visible", entry.isIntersecting);
       });
     }, {
-      rootMargin: "0px 0px -8% 0px",
-      threshold: 0.05
+      rootMargin: "0px 0px -6% 0px",
+      threshold: 0.08
     });
 
     revealItems.forEach((item) => revealObserver.observe(item));
+
+    /* ---- Enhanced motion system ---- */
+    const header = document.querySelector(".site-header");
+    const parallaxEls = document.querySelectorAll("[data-parallax]");
+    const mouseParallaxEl = document.querySelector("[data-mouse-parallax]");
+    const scrollProgress = document.querySelector(".scroll-progress span");
+    const cover = document.querySelector(".cover");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const motionTargets = ".motion-item, .motion-title, .mission-visual, .contact-form, .contact-info > *, .motion-footer > *, #project-slider";
+
+    function resetChildAnimations(el) {
+      const nodes = el.matches(".gold-tag")
+        ? [el, ...el.querySelectorAll(".photo-placeholder, .gold-tag")]
+        : el.querySelectorAll(".photo-placeholder, .gold-tag");
+
+      nodes.forEach((node) => {
+        node.style.animation = "none";
+        void node.offsetWidth;
+        node.style.animation = "";
+      });
+    }
+
+    function setMotionVisible(el, visible) {
+      el.classList.toggle("motion-in", visible);
+      if (!visible) resetChildAnimations(el);
+    }
+
+    function runParallax() {
+      const scrollY = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+      header.classList.toggle("is-scrolled", scrollY > 48);
+
+      if (scrollProgress && docHeight > 0) {
+        scrollProgress.style.width = `${(scrollY / docHeight) * 100}%`;
+      }
+
+      parallaxEls.forEach((el) => {
+        const speed = parseFloat(el.dataset.parallax) || 0.08;
+        el.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
+      });
+    }
+
+    if (!prefersReducedMotion) {
+      runParallax();
+      window.addEventListener("scroll", runParallax, { passive: true });
+
+      if (mouseParallaxEl && cover) {
+        cover.addEventListener("mousemove", (event) => {
+          const amount = parseFloat(mouseParallaxEl.dataset.mouseParallax) || 12;
+          const x = (event.clientX / window.innerWidth - 0.5) * amount;
+          const y = (event.clientY / window.innerHeight - 0.5) * amount;
+          mouseParallaxEl.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        });
+
+        cover.addEventListener("mouseleave", () => {
+          mouseParallaxEl.style.transform = "";
+        });
+      }
+
+      document.querySelectorAll(".team-card, .project-card").forEach((card) => {
+        card.classList.add("tilt-card");
+        card.addEventListener("mousemove", (event) => {
+          const rect = card.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width - 0.5;
+          const y = (event.clientY - rect.top) / rect.height - 0.5;
+          card.style.setProperty("--tilt-x", `${-y * 10}deg`);
+          card.style.setProperty("--tilt-y", `${x * 10}deg`);
+          card.style.setProperty("--tilt-lift", "-8px");
+        });
+        card.addEventListener("mouseleave", () => {
+          card.style.removeProperty("--tilt-x");
+          card.style.removeProperty("--tilt-y");
+          card.style.removeProperty("--tilt-lift");
+        });
+      });
+    }
+
+    document.body.classList.add("motion-ready");
+
+    document.querySelectorAll(".section-bar h2, .gallery-block .section-bar h2").forEach((heading) => {
+      heading.classList.add("motion-title");
+    });
+
+    document.querySelectorAll(".content-inner, .mission-wrap").forEach((inner) => {
+      inner.classList.add("motion-stagger");
+    });
+
+    document.querySelectorAll(".motion-stagger").forEach((group) => {
+      const isTeam = group.classList.contains("team-showcase");
+      [...group.children].forEach((child, index) => {
+        if (child.classList.contains("mission-visual")) return;
+        child.classList.add("motion-item");
+        if (child.classList.contains("team-intro")) {
+          child.style.setProperty("--motion-delay", "0s");
+          return;
+        }
+        if (!isTeam) {
+          child.classList.add(index % 2 === 0 ? "motion-from-left" : "motion-from-right");
+        }
+        child.style.setProperty("--motion-delay", `${index * (isTeam ? 0.16 : 0.11)}s`);
+      });
+    });
+
+    document.querySelectorAll(".contact-info > *, .motion-footer > *").forEach((child, index) => {
+      child.classList.add("motion-item");
+      child.style.setProperty("--motion-delay", `${index * 0.1}s`);
+    });
+
+    document.querySelectorAll(".projects-table tbody tr").forEach((row, index) => {
+      row.classList.add("motion-item", index % 2 === 0 ? "motion-from-left" : "motion-from-right");
+      row.style.setProperty("--motion-delay", `${index * 0.07}s`);
+    });
+
+    const motionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        setMotionVisible(entry.target, entry.isIntersecting);
+      });
+    }, {
+      rootMargin: "0px 0px -6% 0px",
+      threshold: 0.12
+    });
+
+    document.querySelectorAll(motionTargets).forEach((el) => {
+      motionObserver.observe(el);
+    });
+
+    /* ---- Project slider ---- */
+    function initProjectSlider() {
+      const slider = document.querySelector("#project-slider");
+      if (!slider) return;
+
+      const viewport = slider.querySelector(".project-slider-viewport");
+      const track = slider.querySelector(".project-slider-track");
+      const slides = [...track.children];
+      const dotsContainer = slider.querySelector(".slider-dots");
+      const prevBtn = slider.querySelector(".slider-prev");
+      const nextBtn = slider.querySelector(".slider-next");
+      const SLIDE_INTERVAL = 5000;
+      let index = 0;
+      let perView = 1;
+      let autoplayTimer = null;
+      let dragStartX = 0;
+      let dragCurrentX = 0;
+      let isDragging = false;
+      let wasDragged = false;
+      let baseOffset = 0;
+      let wheelLocked = false;
+
+      slider.classList.add("motion-item");
+      motionObserver.observe(slider);
+
+      function getPerView() {
+        return window.innerWidth <= 960 ? 1 : 2;
+      }
+
+      function maxIndex() {
+        return Math.max(0, slides.length - perView);
+      }
+
+      function slideStep() {
+        const gap = parseFloat(getComputedStyle(track).gap) || 16;
+        return slides[0].getBoundingClientRect().width + gap;
+      }
+
+      function buildDots() {
+        dotsContainer.innerHTML = "";
+        const count = maxIndex() + 1;
+        for (let i = 0; i < count; i += 1) {
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "slider-dot";
+          dot.setAttribute("role", "tab");
+          dot.setAttribute("aria-label", `Show project slide ${i + 1}`);
+          dot.addEventListener("click", () => goTo(i));
+          dot.innerHTML = '<span class="slider-dot-fill" aria-hidden="true"></span>';
+          dotsContainer.appendChild(dot);
+        }
+      }
+
+      function setTrackOffset(pixels, animate = true) {
+        track.classList.toggle("is-dragging", !animate);
+        track.style.transform = `translate3d(-${pixels}px, 0, 0)`;
+      }
+
+      function restartSlideTimer() {
+        dotsContainer.querySelectorAll(".slider-dot-fill").forEach((fill) => {
+          fill.style.animation = "none";
+          void fill.offsetWidth;
+          fill.style.animation = "";
+        });
+      }
+
+      function update(animate = true) {
+        perView = getPerView();
+        if (index > maxIndex()) index = maxIndex();
+        baseOffset = index * slideStep();
+        track.classList.toggle("is-dragging", !animate);
+        setTrackOffset(baseOffset, animate);
+
+        dotsContainer.querySelectorAll(".slider-dot").forEach((dot, i) => {
+          const isActive = i === index;
+          dot.classList.toggle("active", isActive);
+          dot.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
+
+        restartSlideTimer();
+      }
+
+      function goTo(nextIndex) {
+        index = nextIndex;
+        update(true);
+        resetAutoplay();
+      }
+
+      function next() {
+        goTo(index >= maxIndex() ? 0 : index + 1);
+      }
+
+      function prev() {
+        goTo(index <= 0 ? maxIndex() : index - 1);
+      }
+
+      function resetAutoplay() {
+        if (prefersReducedMotion) return;
+        clearInterval(autoplayTimer);
+        autoplayTimer = setInterval(next, SLIDE_INTERVAL);
+        restartSlideTimer();
+      }
+
+      function pointerX(event) {
+        if (event.clientX != null) return event.clientX;
+        return event.touches?.[0]?.clientX ?? event.changedTouches?.[0]?.clientX ?? 0;
+      }
+
+      function onDragStart(event) {
+        if (event.pointerType === "mouse" && event.button !== 0) return;
+        isDragging = true;
+        wasDragged = false;
+        dragStartX = pointerX(event);
+        dragCurrentX = dragStartX;
+        viewport.classList.add("is-dragging");
+        clearInterval(autoplayTimer);
+        if (viewport.setPointerCapture && event.pointerId != null) {
+          viewport.setPointerCapture(event.pointerId);
+        }
+      }
+
+      function onDragMove(event) {
+        if (!isDragging) return;
+        dragCurrentX = pointerX(event);
+        const delta = dragCurrentX - dragStartX;
+        if (Math.abs(delta) > 8) wasDragged = true;
+        setTrackOffset(Math.max(0, baseOffset - delta), false);
+      }
+
+      function onDragEnd(event) {
+        if (!isDragging) return;
+        isDragging = false;
+        viewport.classList.remove("is-dragging");
+
+        if (viewport.releasePointerCapture && event.pointerId != null && viewport.hasPointerCapture?.(event.pointerId)) {
+          viewport.releasePointerCapture(event.pointerId);
+        }
+
+        const endX = pointerX(event);
+        const delta = endX - dragStartX;
+
+        if (Math.abs(delta) > 40) {
+          delta < 0 ? next() : prev();
+        } else {
+          update(true);
+        }
+
+        resetAutoplay();
+      }
+
+      function onWheel(event) {
+        const absX = Math.abs(event.deltaX);
+        const absY = Math.abs(event.deltaY);
+        const horizontal = absX > absY || event.shiftKey;
+
+        if (!horizontal) return;
+
+        const delta = absX > absY ? event.deltaX : event.deltaY;
+        if (Math.abs(delta) < 8) return;
+
+        event.preventDefault();
+
+        if (wheelLocked) return;
+        wheelLocked = true;
+        setTimeout(() => { wheelLocked = false; }, 380);
+
+        delta > 0 ? next() : prev();
+      }
+
+      prevBtn.addEventListener("click", prev);
+      nextBtn.addEventListener("click", next);
+
+      slider.addEventListener("mouseenter", () => clearInterval(autoplayTimer));
+      slider.addEventListener("mouseleave", () => {
+        if (!isDragging) resetAutoplay();
+      });
+
+      viewport.addEventListener("pointerdown", onDragStart);
+      viewport.addEventListener("pointermove", onDragMove);
+      viewport.addEventListener("pointerup", onDragEnd);
+      viewport.addEventListener("pointercancel", onDragEnd);
+      viewport.addEventListener("pointerleave", (event) => {
+        if (isDragging) onDragEnd(event);
+      });
+
+      viewport.addEventListener("wheel", onWheel, { passive: false });
+
+      viewport.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") prev();
+        if (event.key === "ArrowRight") next();
+      });
+
+      viewport.setAttribute("tabindex", "0");
+      viewport.setAttribute("role", "region");
+      viewport.setAttribute("aria-label", "Projects slider");
+
+      viewport.addEventListener("click", (event) => {
+        if (wasDragged) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      }, true);
+
+      window.addEventListener("resize", () => {
+        buildDots();
+        update(true);
+      });
+
+      buildDots();
+      update(true);
+      resetAutoplay();
+    }
+
+    initProjectSlider();
   </script>
 </body>
 </html>

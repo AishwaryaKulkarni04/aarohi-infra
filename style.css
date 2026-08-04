@@ -143,14 +143,10 @@ textarea {
 .logo-frame {
   display: block;
   line-height: 0;
-  background: #ffffff;
-  border-radius: 6px;
-  padding: 0.2rem 0.35rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
 .logo-img {
-  height: 44px;
+  height: 52px;
   width: auto;
   display: block;
   object-fit: contain;
@@ -554,12 +550,6 @@ textarea {
   width: min(300px, 72vw);
   margin: 0 auto;
   line-height: 0;
-  background: #ffffff;
-  border-radius: 10px;
-  padding: 0.65rem 0.85rem;
-  box-shadow:
-    0 16px 48px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(212, 175, 55, 0.25);
   animation:
     logo-mount 1.2s var(--ease-out) 0.25s both,
     logo-float 6s ease-in-out 1.6s infinite;
@@ -588,6 +578,7 @@ textarea {
   height: auto;
   display: block;
   object-fit: contain;
+  filter: drop-shadow(0 8px 24px rgba(212, 175, 55, 0.2));
   transition: transform 0.5s var(--ease-pro);
 }
 

@@ -144,13 +144,14 @@ textarea {
   position: relative;
   display: block;
   line-height: 0;
-  padding: 0.4rem 0.75rem;
+  padding: 0.45rem 0.85rem;
   border: 1px solid rgba(212, 175, 55, 0.5);
   background:
-    linear-gradient(145deg, rgba(212, 175, 55, 0.1), rgba(0, 0, 0, 0.45));
+    linear-gradient(145deg, rgba(212, 175, 55, 0.12), rgba(0, 0, 0, 0.5));
   box-shadow:
     0 6px 22px rgba(0, 0, 0, 0.35),
     0 0 18px rgba(212, 175, 55, 0.1);
+  overflow: hidden;
   transition:
     border-color 0.35s ease,
     box-shadow 0.35s ease,
@@ -160,28 +161,80 @@ textarea {
 .logo-frame::before {
   content: "";
   position: absolute;
-  inset: 4px;
-  border: 1px solid rgba(212, 175, 55, 0.22);
+  inset: 5px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
   pointer-events: none;
 }
 
 .logo-frame::after {
   content: "";
   position: absolute;
-  left: 0.75rem;
-  right: 0.75rem;
+  left: 0.85rem;
+  right: 0.85rem;
   bottom: 0;
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
   opacity: 0.55;
 }
 
+.logo-corners {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    linear-gradient(var(--gold-light), var(--gold-light)) 0 0 / 12px 2px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 0 0 / 2px 12px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 100% 0 / 12px 2px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 100% 0 / 2px 12px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 0 100% / 12px 2px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 0 100% / 2px 12px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 100% 100% / 12px 2px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 100% 100% / 2px 12px no-repeat;
+  opacity: 0.75;
+  transition: opacity 0.35s ease;
+}
+
+.logo-shine {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.logo-shine::after {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -120%;
+  width: 55%;
+  height: 120%;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(240, 215, 140, 0.22) 50%,
+    transparent 65%
+  );
+  transform: skewX(-18deg);
+}
+
+.logo:hover .logo-shine::after {
+  animation: logo-shimmer-pass 0.85s var(--ease-out) forwards;
+}
+
+.logo:hover .logo-corners {
+  opacity: 1;
+}
+
 .logo-img {
+  position: relative;
+  z-index: 1;
   height: 58px;
   width: auto;
   display: block;
   object-fit: contain;
-  filter: drop-shadow(0 2px 10px rgba(212, 175, 55, 0.2));
+  filter: drop-shadow(0 2px 10px rgba(212, 175, 55, 0.22));
   transition: transform 0.35s var(--ease-out), filter 0.35s ease;
 }
 
@@ -189,13 +242,18 @@ textarea {
   border-color: var(--gold);
   box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.4),
-    0 0 28px rgba(212, 175, 55, 0.22);
+    0 0 32px rgba(212, 175, 55, 0.24);
   transform: translateY(-1px);
 }
 
 .logo:hover .logo-img {
   transform: scale(1.03);
-  filter: drop-shadow(0 4px 16px rgba(212, 175, 55, 0.35));
+  filter: drop-shadow(0 4px 18px rgba(212, 175, 55, 0.38));
+}
+
+@keyframes logo-shimmer-pass {
+  from { left: -120%; }
+  to { left: 140%; }
 }
 
 .nav {
@@ -579,20 +637,103 @@ textarea {
 .cover-brand {
   position: relative;
   z-index: 1;
+  width: 100%;
 }
 
 .cover-brand::before {
   content: "";
   position: absolute;
   left: 50%;
-  top: 50%;
-  width: min(420px, 88vw);
-  height: min(420px, 88vw);
+  top: 46%;
+  width: min(480px, 94vw);
+  height: min(480px, 94vw);
   translate: -50% -50%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.16), transparent 68%);
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.18), transparent 68%);
   pointer-events: none;
   z-index: -1;
+  animation: brand-glow-breathe 7s ease-in-out infinite;
+}
+
+@keyframes brand-glow-breathe {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+
+.brand-showcase {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.brand-orbit {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: min(460px, 94vw);
+  height: min(460px, 94vw);
+  translate: -50% -50%;
+  border: 1px dashed rgba(212, 175, 55, 0.28);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: brand-orbit-spin 32s linear infinite;
+}
+
+.brand-orbit::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  border-radius: 50%;
+}
+
+.brand-orbit::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--gold-light), var(--gold-deep));
+  box-shadow: 0 0 14px rgba(212, 175, 55, 0.75);
+}
+
+@keyframes brand-orbit-spin {
+  to { rotate: 360deg; }
+}
+
+.brand-rays {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.brand-rays span {
+  position: absolute;
+  top: 42%;
+  width: min(160px, 20vw);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.55), rgba(240, 215, 140, 0.15));
+  opacity: 0;
+  animation: brand-ray-in 1.2s var(--ease-out) 0.55s forwards;
+}
+
+.brand-rays span:first-child {
+  right: calc(50% + min(210px, 44vw));
+}
+
+.brand-rays span:last-child {
+  left: calc(50% + min(210px, 44vw));
+  transform: scaleX(-1);
+}
+
+@keyframes brand-ray-in {
+  from { opacity: 0; width: 0; }
+  to { opacity: 1; width: min(160px, 20vw); }
 }
 
 @keyframes rise-in {
@@ -602,65 +743,118 @@ textarea {
 
 .brand-frame {
   position: relative;
-  width: min(360px, 78vw);
+  width: min(380px, 82vw);
   margin: 0 auto;
   line-height: 0;
-  padding: 1.35rem 1.5rem 1.5rem;
-  border: 1px solid rgba(212, 175, 55, 0.58);
+  padding: 1.5rem 1.65rem 1.65rem;
+  border: 1px solid rgba(212, 175, 55, 0.62);
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.14), transparent 58%),
-    linear-gradient(180deg, rgba(24, 24, 24, 0.92), rgba(8, 8, 8, 0.88));
+    radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.16), transparent 58%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 18px,
+      rgba(212, 175, 55, 0.025) 18px,
+      rgba(212, 175, 55, 0.025) 19px
+    ),
+    linear-gradient(180deg, rgba(28, 28, 28, 0.94), rgba(6, 6, 6, 0.92));
   box-shadow:
-    0 28px 70px rgba(0, 0, 0, 0.55),
-    0 0 48px rgba(212, 175, 55, 0.14),
-    inset 0 1px 0 rgba(212, 175, 55, 0.18);
-  animation: rise-in 1s var(--ease-out) 0.2s both;
+    0 32px 80px rgba(0, 0, 0, 0.58),
+    0 0 56px rgba(212, 175, 55, 0.16),
+    inset 0 1px 0 rgba(212, 175, 55, 0.22);
+  overflow: hidden;
+  animation: brand-frame-in 1.15s var(--ease-out) 0.25s both;
   transition:
     border-color 0.45s ease,
     box-shadow 0.45s ease,
     transform 0.45s var(--ease-out);
 }
 
+@keyframes brand-frame-in {
+  from {
+    opacity: 0;
+    transform: translateY(32px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 .brand-frame::before {
   content: "";
   position: absolute;
-  inset: 0.65rem;
-  border: 1px solid rgba(212, 175, 55, 0.28);
+  inset: 0.75rem;
+  border: 1px solid rgba(212, 175, 55, 0.26);
   pointer-events: none;
 }
 
 .brand-frame::after {
   content: "";
   position: absolute;
-  left: 1.25rem;
-  right: 1.25rem;
-  bottom: 0.55rem;
+  left: 1.35rem;
+  right: 1.35rem;
+  bottom: 0.6rem;
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--gold-light), var(--gold), var(--gold-light), transparent);
-  opacity: 0.7;
+  opacity: 0.75;
+}
+
+.logo-corners--hero {
+  background:
+    linear-gradient(var(--gold-light), var(--gold-light)) 0 0 / 22px 2px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 0 0 / 2px 22px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 100% 0 / 22px 2px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 100% 0 / 2px 22px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 0 100% / 22px 2px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 0 100% / 2px 22px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 100% 100% / 22px 2px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 100% 100% / 2px 22px no-repeat;
+  opacity: 0.9;
+}
+
+.logo-shine--hero::after {
+  animation: logo-shimmer-loop 5.5s ease-in-out 1.8s infinite;
+}
+
+@keyframes logo-shimmer-loop {
+  0%, 72% { left: -120%; }
+  100% { left: 140%; }
 }
 
 .brand-logo {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: auto;
   display: block;
   object-fit: contain;
-  filter: drop-shadow(0 10px 28px rgba(212, 175, 55, 0.28));
+  filter: drop-shadow(0 12px 32px rgba(212, 175, 55, 0.32));
   transition: transform 0.5s var(--ease-pro), filter 0.5s ease;
+}
+
+.brand-plinth {
+  width: min(300px, 68vw);
+  height: 10px;
+  margin-top: 1.1rem;
+  background: radial-gradient(ellipse, rgba(212, 175, 55, 0.42), transparent 72%);
+  filter: blur(5px);
+  opacity: 0.85;
+  animation: rise-in 1s var(--ease-out) 0.7s both;
 }
 
 .brand-frame:hover {
   border-color: var(--gold);
   box-shadow:
-    0 32px 80px rgba(0, 0, 0, 0.6),
-    0 0 56px rgba(212, 175, 55, 0.22),
-    inset 0 1px 0 rgba(212, 175, 55, 0.28);
-  transform: translateY(-2px);
+    0 36px 90px rgba(0, 0, 0, 0.62),
+    0 0 64px rgba(212, 175, 55, 0.26),
+    inset 0 1px 0 rgba(212, 175, 55, 0.32);
+  transform: translateY(-3px);
 }
 
 .brand-frame:hover .brand-logo {
-  transform: scale(1.02);
-  filter: drop-shadow(0 14px 36px rgba(212, 175, 55, 0.38));
+  transform: scale(1.025);
+  filter: drop-shadow(0 16px 40px rgba(212, 175, 55, 0.42));
 }
 
 .tagline {

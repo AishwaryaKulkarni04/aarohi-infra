@@ -146,7 +146,7 @@ textarea {
 }
 
 .logo-img {
-  height: 52px;
+  height: 58px;
   width: auto;
   display: block;
   object-fit: contain;
@@ -249,7 +249,7 @@ textarea {
 }
 
 .site-header.is-scrolled .logo-img {
-  height: 42px;
+  height: 50px;
 }
 
 /* ---------- Buttons ---------- */
@@ -547,7 +547,7 @@ textarea {
 }
 
 .brand-frame {
-  width: min(300px, 72vw);
+  width: min(360px, 78vw);
   margin: 0 auto;
   line-height: 0;
   animation:
@@ -578,7 +578,7 @@ textarea {
   height: auto;
   display: block;
   object-fit: contain;
-  filter: drop-shadow(0 8px 24px rgba(212, 175, 55, 0.2));
+  filter: drop-shadow(0 10px 28px rgba(212, 175, 55, 0.18));
   transition: transform 0.5s var(--ease-pro);
 }
 

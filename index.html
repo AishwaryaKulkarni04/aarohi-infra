@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=26" />
+  <link rel="stylesheet" href="style.css?v=27" />
 </head>
 <body>
   <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -572,6 +572,17 @@
     <a href="#home">Back to top ↑</a>
   </footer>
 
+  <div id="project-lightbox" class="project-lightbox" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Project image">
+    <button type="button" class="project-lightbox-backdrop" aria-label="Close project image"></button>
+    <div class="project-lightbox-panel">
+      <button type="button" class="project-lightbox-close" aria-label="Close">&times;</button>
+      <figure class="project-lightbox-figure">
+        <img class="project-lightbox-img" src="" alt="" />
+        <figcaption class="project-lightbox-caption"></figcaption>
+      </figure>
+    </div>
+  </div>
+
   <script>
     const enquiryForm = document.querySelector("#whatsapp-enquiry");
     const navLinks = [...document.querySelectorAll(".nav a[href^='#']")];
@@ -925,6 +936,7 @@
 
       function onDragStart(event) {
         if (event.pointerType === "mouse" && event.button !== 0) return;
+        if (event.target.closest(".project-card")) return;
         isDragging = true;
         wasDragged = false;
         dragStartX = pointerX(event);
@@ -1029,6 +1041,69 @@
     }
 
     initProjectSlider();
+
+    /* ---- Desktop project lightbox ---- */
+    function initProjectLightbox() {
+      const lightbox = document.querySelector("#project-lightbox");
+      if (!lightbox) return;
+
+      const desktopMq = window.matchMedia("(min-width: 961px)");
+      const lbImg = lightbox.querySelector(".project-lightbox-img");
+      const lbCaption = lightbox.querySelector(".project-lightbox-caption");
+      const closeBtn = lightbox.querySelector(".project-lightbox-close");
+      const backdrop = lightbox.querySelector(".project-lightbox-backdrop");
+
+      function openLightbox(src, alt, title) {
+        lbImg.src = src;
+        lbImg.alt = alt;
+        lbCaption.textContent = title || "";
+        lightbox.hidden = false;
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.classList.add("lightbox-open");
+        closeBtn.focus();
+      }
+
+      function closeLightbox() {
+        lightbox.hidden = true;
+        lightbox.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("lightbox-open");
+        lbImg.removeAttribute("src");
+      }
+
+      closeBtn.addEventListener("click", closeLightbox);
+      backdrop.addEventListener("click", closeLightbox);
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !lightbox.hidden) {
+          closeLightbox();
+        }
+      });
+
+      document.querySelectorAll(".project-slider-track .project-card").forEach((card) => {
+        card.addEventListener("click", (event) => {
+          if (!desktopMq.matches) return;
+
+          const thumbImg = card.querySelector(".project-thumb img");
+          if (!thumbImg) return;
+
+          event.preventDefault();
+          const title = card.querySelector(".project-card-text h3")?.textContent?.trim() || "";
+          openLightbox(thumbImg.currentSrc || thumbImg.src, thumbImg.alt, title);
+        });
+      });
+
+      document.querySelectorAll(".project-feature-photo img").forEach((img) => {
+        img.addEventListener("click", () => {
+          if (!desktopMq.matches) return;
+
+          const block = img.closest(".gallery-block");
+          const title = block?.querySelector(".section-bar h2")?.textContent?.trim() || img.alt;
+          openLightbox(img.currentSrc || img.src, img.alt, title);
+        });
+      });
+    }
+
+    initProjectLightbox();
 
     /* Prevent horizontal page swipe / rubber-band on mobile */
     let pageTouchStartX = 0;

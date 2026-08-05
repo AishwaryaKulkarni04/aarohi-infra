@@ -1387,12 +1387,6 @@ main section[id],
   -webkit-user-drag: none;
 }
 
-@media (min-width: 961px) {
-  .project-slider-track .project-card:has(.project-thumb img) {
-    cursor: zoom-in;
-  }
-}
-
 .project-slider-controls {
   display: flex;
   align-items: center;

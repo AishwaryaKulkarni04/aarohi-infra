@@ -144,87 +144,39 @@ textarea {
   position: relative;
   display: block;
   line-height: 0;
-  padding: 0.45rem 0.85rem;
-  border: 1px solid rgba(212, 175, 55, 0.5);
-  background:
-    linear-gradient(145deg, rgba(212, 175, 55, 0.12), rgba(0, 0, 0, 0.5));
-  box-shadow:
-    0 6px 22px rgba(0, 0, 0, 0.35),
-    0 0 18px rgba(212, 175, 55, 0.1);
-  overflow: hidden;
-  transition:
-    border-color 0.35s ease,
-    box-shadow 0.35s ease,
-    transform 0.35s var(--ease-out);
+  padding: 0.15rem;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  overflow: visible;
+  transition: transform 0.35s var(--ease-out);
 }
 
-.logo-frame::before {
-  content: "";
-  position: absolute;
-  inset: 5px;
-  border: 1px solid rgba(212, 175, 55, 0.2);
-  pointer-events: none;
-}
-
+.logo-frame::before,
 .logo-frame::after {
-  content: "";
-  position: absolute;
-  left: 0.85rem;
-  right: 0.85rem;
-  bottom: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  opacity: 0.55;
+  display: none;
 }
 
 .logo-corners {
   position: absolute;
-  inset: 0;
+  inset: -4px;
   pointer-events: none;
   z-index: 2;
   background:
-    linear-gradient(var(--gold-light), var(--gold-light)) 0 0 / 12px 2px no-repeat,
-    linear-gradient(var(--gold-light), var(--gold-light)) 0 0 / 2px 12px no-repeat,
-    linear-gradient(var(--gold-light), var(--gold-light)) 100% 0 / 12px 2px no-repeat,
-    linear-gradient(var(--gold-light), var(--gold-light)) 100% 0 / 2px 12px no-repeat,
-    linear-gradient(var(--gold-light), var(--gold-light)) 0 100% / 12px 2px no-repeat,
-    linear-gradient(var(--gold-light), var(--gold-light)) 0 100% / 2px 12px no-repeat,
-    linear-gradient(var(--gold-light), var(--gold-light)) 100% 100% / 12px 2px no-repeat,
-    linear-gradient(var(--gold-light), var(--gold-light)) 100% 100% / 2px 12px no-repeat;
-  opacity: 0.75;
+    linear-gradient(var(--gold-light), var(--gold-light)) 0 0 / 14px 2px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 0 0 / 2px 14px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 100% 0 / 14px 2px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 100% 0 / 2px 14px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 0 100% / 14px 2px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 0 100% / 2px 14px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 100% 100% / 14px 2px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 100% 100% / 2px 14px no-repeat;
+  opacity: 0.55;
   transition: opacity 0.35s ease;
 }
 
 .logo-shine {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 3;
-}
-
-.logo-shine::after {
-  content: "";
-  position: absolute;
-  top: -10%;
-  left: -120%;
-  width: 55%;
-  height: 120%;
-  background: linear-gradient(
-    105deg,
-    transparent 35%,
-    rgba(240, 215, 140, 0.22) 50%,
-    transparent 65%
-  );
-  transform: skewX(-18deg);
-}
-
-.logo:hover .logo-shine::after {
-  animation: logo-shimmer-pass 0.85s var(--ease-out) forwards;
-}
-
-.logo:hover .logo-corners {
-  opacity: 1;
+  display: none;
 }
 
 .logo-img {
@@ -234,26 +186,21 @@ textarea {
   width: auto;
   display: block;
   object-fit: contain;
-  filter: drop-shadow(0 2px 10px rgba(212, 175, 55, 0.22));
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45));
   transition: transform 0.35s var(--ease-out), filter 0.35s ease;
 }
 
 .logo:hover .logo-frame {
-  border-color: var(--gold);
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.4),
-    0 0 32px rgba(212, 175, 55, 0.24);
   transform: translateY(-1px);
+}
+
+.logo:hover .logo-corners {
+  opacity: 0.9;
 }
 
 .logo:hover .logo-img {
   transform: scale(1.03);
-  filter: drop-shadow(0 4px 18px rgba(212, 175, 55, 0.38));
-}
-
-@keyframes logo-shimmer-pass {
-  from { left: -120%; }
-  to { left: 140%; }
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5));
 }
 
 .nav {
@@ -746,28 +693,13 @@ textarea {
   width: min(380px, 82vw);
   margin: 0 auto;
   line-height: 0;
-  padding: 1.5rem 1.65rem 1.65rem;
-  border: 1px solid rgba(212, 175, 55, 0.62);
-  background:
-    radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.16), transparent 58%),
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 18px,
-      rgba(212, 175, 55, 0.025) 18px,
-      rgba(212, 175, 55, 0.025) 19px
-    ),
-    linear-gradient(180deg, rgba(28, 28, 28, 0.94), rgba(6, 6, 6, 0.92));
-  box-shadow:
-    0 32px 80px rgba(0, 0, 0, 0.58),
-    0 0 56px rgba(212, 175, 55, 0.16),
-    inset 0 1px 0 rgba(212, 175, 55, 0.22);
-  overflow: hidden;
+  padding: 0.25rem;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  overflow: visible;
   animation: brand-frame-in 1.15s var(--ease-out) 0.25s both;
-  transition:
-    border-color 0.45s ease,
-    box-shadow 0.45s ease,
-    transform 0.45s var(--ease-out);
+  transition: transform 0.45s var(--ease-out);
 }
 
 @keyframes brand-frame-in {
@@ -781,45 +713,27 @@ textarea {
   }
 }
 
-.brand-frame::before {
-  content: "";
-  position: absolute;
-  inset: 0.75rem;
-  border: 1px solid rgba(212, 175, 55, 0.26);
-  pointer-events: none;
-}
-
+.brand-frame::before,
 .brand-frame::after {
-  content: "";
-  position: absolute;
-  left: 1.35rem;
-  right: 1.35rem;
-  bottom: 0.6rem;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold-light), var(--gold), var(--gold-light), transparent);
-  opacity: 0.75;
+  display: none;
 }
 
 .logo-corners--hero {
+  inset: -8px;
   background:
-    linear-gradient(var(--gold-light), var(--gold-light)) 0 0 / 22px 2px no-repeat,
-    linear-gradient(var(--gold-light), var(--gold-light)) 0 0 / 2px 22px no-repeat,
-    linear-gradient(var(--gold-light), var(--gold-light)) 100% 0 / 22px 2px no-repeat,
-    linear-gradient(var(--gold-light), var(--gold-light)) 100% 0 / 2px 22px no-repeat,
-    linear-gradient(var(--gold-light), var(--gold-light)) 0 100% / 22px 2px no-repeat,
-    linear-gradient(var(--gold-light), var(--gold-light)) 0 100% / 2px 22px no-repeat,
-    linear-gradient(var(--gold-light), var(--gold-light)) 100% 100% / 22px 2px no-repeat,
-    linear-gradient(var(--gold-light), var(--gold-light)) 100% 100% / 2px 22px no-repeat;
-  opacity: 0.9;
+    linear-gradient(var(--gold-light), var(--gold-light)) 0 0 / 24px 2px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 0 0 / 2px 24px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 100% 0 / 24px 2px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 100% 0 / 2px 24px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 0 100% / 24px 2px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 0 100% / 2px 24px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 100% 100% / 24px 2px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) 100% 100% / 2px 24px no-repeat;
+  opacity: 0.65;
 }
 
-.logo-shine--hero::after {
-  animation: logo-shimmer-loop 5.5s ease-in-out 1.8s infinite;
-}
-
-@keyframes logo-shimmer-loop {
-  0%, 72% { left: -120%; }
-  100% { left: 140%; }
+.logo-shine--hero {
+  display: none;
 }
 
 .brand-logo {
@@ -829,32 +743,31 @@ textarea {
   height: auto;
   display: block;
   object-fit: contain;
-  filter: drop-shadow(0 12px 32px rgba(212, 175, 55, 0.32));
+  filter: drop-shadow(0 14px 36px rgba(0, 0, 0, 0.55));
   transition: transform 0.5s var(--ease-pro), filter 0.5s ease;
 }
 
 .brand-plinth {
   width: min(300px, 68vw);
   height: 10px;
-  margin-top: 1.1rem;
-  background: radial-gradient(ellipse, rgba(212, 175, 55, 0.42), transparent 72%);
+  margin-top: 0.85rem;
+  background: radial-gradient(ellipse, rgba(212, 175, 55, 0.35), transparent 72%);
   filter: blur(5px);
-  opacity: 0.85;
+  opacity: 0.75;
   animation: rise-in 1s var(--ease-out) 0.7s both;
 }
 
 .brand-frame:hover {
-  border-color: var(--gold);
-  box-shadow:
-    0 36px 90px rgba(0, 0, 0, 0.62),
-    0 0 64px rgba(212, 175, 55, 0.26),
-    inset 0 1px 0 rgba(212, 175, 55, 0.32);
   transform: translateY(-3px);
 }
 
 .brand-frame:hover .brand-logo {
-  transform: scale(1.025);
-  filter: drop-shadow(0 16px 40px rgba(212, 175, 55, 0.42));
+  transform: scale(1.02);
+  filter: drop-shadow(0 18px 44px rgba(0, 0, 0, 0.62));
+}
+
+.brand-frame:hover .logo-corners--hero {
+  opacity: 0.95;
 }
 
 .tagline {

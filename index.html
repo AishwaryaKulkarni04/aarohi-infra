@@ -3,19 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>AAROHI Infra — Building The Future · Restoring The Past</title>
   <meta name="description" content="AAROHI Infra — general contractor in Nashik. Commercial, residential & industrial construction since 2019." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=25" />
+  <link rel="stylesheet" href="style.css?v=26" />
 </head>
 <body>
   <div class="scroll-progress" aria-hidden="true"><span></span></div>
   <header class="site-header">
     <a href="#home" class="logo">
       <span class="logo-frame">
-        <img src="assets/logo-header.png" alt="AAROHI Infra" class="logo-img" />
+        <img src="assets/logo.png?v=26" alt="AAROHI Infra" class="logo-img" />
       </span>
     </a>
 
@@ -58,7 +61,7 @@
 
       <div class="cover-brand" data-parallax="0.07" data-mouse-parallax="12">
         <div class="brand-frame">
-          <img src="assets/logo.png" alt="AAROHI Infra — Building The Future, Restoring The Past" class="brand-logo" />
+          <img src="assets/logo.png?v=26" alt="AAROHI Infra — Building The Future, Restoring The Past" class="brand-logo" />
         </div>
       </div>
 
@@ -144,7 +147,7 @@
           <article class="team-card">
             <div class="team-photo-wrap">
               <div class="team-photo passport-photo" aria-label="Passport photo for Ameya Jadhav">
-                <img src="assets/team/ameya-jadhav.jpg" alt="Ameya Jadhav" width="350" height="450" loading="lazy" />
+                <img src="assets/team/ameya-jadhav.jpg?v=26" alt="Ameya Jadhav" width="350" height="450" loading="lazy" />
               </div>
             </div>
             <div class="team-meta">
@@ -155,7 +158,7 @@
           <article class="team-card">
             <div class="team-photo-wrap">
               <div class="team-photo passport-photo" aria-label="Passport photo for Rohan Pathak">
-                <img src="assets/team/rohan-pathak.png" alt="Rohan Pathak" width="350" height="450" loading="lazy" />
+                <img src="assets/team/rohan-pathak.png?v=26" alt="Rohan Pathak" width="350" height="450" loading="lazy" />
               </div>
             </div>
             <div class="team-meta">
@@ -166,7 +169,7 @@
           <article class="team-card">
             <div class="team-photo-wrap">
               <div class="team-photo passport-photo" aria-label="Passport photo for Hitesh Shewale">
-                <img src="assets/team/hitesh-shewale.jpg" alt="Hitesh Shewale" width="350" height="450" loading="lazy" />
+                <img src="assets/team/hitesh-shewale.jpg?v=26" alt="Hitesh Shewale" width="350" height="450" loading="lazy" />
               </div>
             </div>
             <div class="team-meta">
@@ -268,7 +271,7 @@
               </a>
               <a href="#proj-bliss" class="project-card">
                 <div class="project-thumb">
-                  <img src="assets/projects/samarth-bliss.png" alt="Samarth Bliss residential building" loading="lazy" />
+                  <img src="assets/projects/samarth-bliss.png?v=26" alt="Samarth Bliss residential building" loading="lazy" />
                 </div>
                 <div class="project-card-text">
                   <h3>Samarth Bliss</h3>
@@ -277,7 +280,7 @@
               </a>
               <a href="#proj-crown" class="project-card">
                 <div class="project-thumb">
-                  <img src="assets/projects/samarth-crown.png" alt="Samarth Crown residential building" loading="lazy" />
+                  <img src="assets/projects/samarth-crown.png?v=26" alt="Samarth Crown residential building" loading="lazy" />
                 </div>
                 <div class="project-card-text">
                   <h3>Samarth Crown</h3>
@@ -440,7 +443,7 @@
         </div>
         <div class="project-feature motion-stagger">
           <figure class="project-feature-photo motion-item">
-            <img src="assets/projects/samarth-bliss.png" alt="Samarth Bliss residential building by Aarohi Infra" loading="lazy" />
+            <img src="assets/projects/samarth-bliss.png?v=26" alt="Samarth Bliss residential building by Aarohi Infra" loading="lazy" />
           </figure>
           <div class="project-feature-details project-feature-details--single">
             <div class="project-feature-stat motion-item">
@@ -458,7 +461,7 @@
         </div>
         <div class="project-feature motion-stagger">
           <figure class="project-feature-photo project-feature-photo--crown motion-item">
-            <img src="assets/projects/samarth-crown.png" alt="Samarth Crown residential building by Aarohi Infra" loading="lazy" />
+            <img src="assets/projects/samarth-crown.png?v=26" alt="Samarth Crown residential building by Aarohi Infra" loading="lazy" />
           </figure>
           <div class="project-feature-details project-feature-details--single">
             <div class="project-feature-stat motion-item">
@@ -643,7 +646,8 @@
         if (sectionId === "home") {
           event.preventDefault();
           history.replaceState(null, "", "#home");
-          replayHeroMount();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          setActiveNav("home");
           return;
         }
 
@@ -656,53 +660,13 @@
       });
     });
 
-    function replayAnimation(elements) {
-      elements.forEach((el) => {
-        el.style.animation = "none";
-        void el.offsetWidth;
-        el.style.animation = "";
-      });
-    }
-
-    function replayHeroMount() {
-      const home = document.querySelector("#home");
-      if (!home) return;
-
-      window.scrollTo({ top: 0, behavior: "smooth" });
-
-      replayAnimation(home.querySelectorAll(
-        ".brand-frame, .scroll-hint, .cover-contacts .contact-line, .cover-line"
-      ));
-      replayAnimation(document.querySelectorAll(".site-header, .nav a"));
-
-      const brand = home.querySelector("[data-mouse-parallax]");
-      if (brand) brand.style.transform = "";
-
-      setActiveNav("home");
-    }
-
     document.querySelectorAll('a[href="#home"]').forEach((link) => {
       link.addEventListener("click", (event) => {
         event.preventDefault();
         history.replaceState(null, "", "#home");
-        replayHeroMount();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        setActiveNav("home");
       });
-    });
-
-    window.addEventListener("load", () => {
-      const navEntry = performance.getEntriesByType("navigation")[0];
-      const isReload = navEntry?.type === "reload";
-
-      if (isReload && (!window.location.hash || window.location.hash === "#home")) {
-        window.scrollTo(0, 0);
-        requestAnimationFrame(replayHeroMount);
-      }
-    });
-
-    window.addEventListener("pageshow", (event) => {
-      if (event.persisted && (!window.location.hash || window.location.hash === "#home")) {
-        replayHeroMount();
-      }
     });
 
     const revealItems = document.querySelectorAll(
@@ -713,7 +677,10 @@
 
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        entry.target.classList.toggle("is-visible", entry.isIntersecting);
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
       });
     }, {
       rootMargin: "0px 0px -6% 0px",
@@ -731,21 +698,9 @@
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const motionTargets = ".motion-item, .motion-title, .mission-visual, .contact-form, .contact-info > *, .motion-footer > *, #project-slider";
 
-    function resetChildAnimations(el) {
-      const nodes = el.matches(".gold-tag")
-        ? [el, ...el.querySelectorAll(".photo-placeholder, .gold-tag")]
-        : el.querySelectorAll(".photo-placeholder, .gold-tag");
-
-      nodes.forEach((node) => {
-        node.style.animation = "none";
-        void node.offsetWidth;
-        node.style.animation = "";
-      });
-    }
-
-    function setMotionVisible(el, visible) {
-      el.classList.toggle("motion-in", visible);
-      if (!visible) resetChildAnimations(el);
+    function setMotionVisible(el) {
+      el.classList.add("motion-in");
+      motionObserver.unobserve(el);
     }
 
     function runParallax() {
@@ -842,11 +797,13 @@
 
     const motionObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        setMotionVisible(entry.target, entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setMotionVisible(entry.target);
+        }
       });
     }, {
-      rootMargin: "0px 0px -6% 0px",
-      threshold: 0.12
+      rootMargin: "0px 0px -4% 0px",
+      threshold: 0.05
     });
 
     document.querySelectorAll(motionTargets).forEach((el) => {

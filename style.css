@@ -146,11 +146,10 @@ textarea {
 }
 
 .logo-img {
-  height: 48px;
+  height: 58px;
   width: auto;
   display: block;
   object-fit: contain;
-  image-rendering: auto;
   transition: transform 0.3s ease;
 }
 
@@ -250,7 +249,7 @@ textarea {
 }
 
 .site-header.is-scrolled .logo-img {
-  height: 42px;
+  height: 50px;
 }
 
 /* ---------- Buttons ---------- */
@@ -539,7 +538,6 @@ textarea {
 .cover-brand {
   position: relative;
   z-index: 1;
-  will-change: transform;
 }
 
 @keyframes rise-in {
@@ -551,27 +549,7 @@ textarea {
   width: min(360px, 78vw);
   margin: 0 auto;
   line-height: 0;
-  animation:
-    logo-mount 1.2s var(--ease-out) 0.25s both,
-    logo-float 6s ease-in-out 1.6s infinite;
-}
-
-@keyframes logo-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-@keyframes logo-mount {
-  from {
-    opacity: 0;
-    transform: translateY(28px) scale(0.94);
-    filter: blur(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
+  animation: rise-in 1s var(--ease-out) 0.2s both;
 }
 
 .brand-logo {
@@ -579,7 +557,6 @@ textarea {
   height: auto;
   display: block;
   object-fit: contain;
-  image-rendering: auto;
   filter: drop-shadow(0 10px 28px rgba(212, 175, 55, 0.18));
   transition: transform 0.5s var(--ease-pro);
 }
@@ -735,12 +712,10 @@ main section[id],
 .contact-info > *,
 .motion-footer > * {
   opacity: 0;
-  transform: translateY(var(--motion-y)) scale(0.94);
-  filter: blur(5px);
+  transform: translateY(var(--motion-y)) scale(0.96);
   transition:
     opacity var(--motion-dur) var(--ease-out),
-    transform var(--motion-dur) var(--ease-out),
-    filter var(--motion-dur) var(--ease-out);
+    transform var(--motion-dur) var(--ease-out);
   transition-delay: var(--motion-delay, 0s);
 }
 
@@ -757,7 +732,6 @@ main section[id],
 .motion-footer > *.motion-in {
   opacity: 1;
   transform: translateY(0) translateX(0) scale(1);
-  filter: blur(0);
 }
 
 .motion-item.motion-in .photo-placeholder {
@@ -833,17 +807,14 @@ main section[id],
 .contact-form {
   opacity: 0;
   transform: translateX(48px) scale(0.96);
-  filter: blur(5px);
   transition:
     opacity var(--motion-dur) var(--ease-out),
-    transform var(--motion-dur) var(--ease-out),
-    filter var(--motion-dur) var(--ease-out);
+    transform var(--motion-dur) var(--ease-out);
 }
 
 .contact-form.motion-in {
   opacity: 1;
   transform: translateX(0) scale(1);
-  filter: blur(0);
 }
 
 .section-bar {
@@ -860,14 +831,8 @@ main section[id],
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
-  transform: translateX(-100%);
-  animation: bar-sweep 7s ease-in-out infinite;
-}
-
-@keyframes bar-sweep {
-  0%, 100% { transform: translateX(-100%); }
-  50% { transform: translateX(100%); }
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.08), transparent);
+  pointer-events: none;
 }
 
 .section-bar h2 {
@@ -962,12 +927,10 @@ main section[id],
 
 .team-intro.motion-item {
   transform: translateY(28px) scale(0.96);
-  filter: blur(3px);
 }
 
 .team-intro.motion-item.motion-in {
   transform: translateY(0) scale(1);
-  filter: blur(0);
 }
 
 .team-showcase {
@@ -1000,12 +963,10 @@ main section[id],
 
 .team-showcase > .motion-item {
   transform: translateY(56px) scale(0.88);
-  filter: blur(6px);
 }
 
 .team-showcase > .motion-item.motion-in {
   transform: translateY(0) scale(1);
-  filter: blur(0);
 }
 
 .team-card {
@@ -1022,7 +983,6 @@ main section[id],
     border-color 0.35s ease,
     box-shadow 0.45s ease;
   transform-style: preserve-3d;
-  will-change: transform;
   position: relative;
 }
 
@@ -1385,7 +1345,6 @@ main section[id],
   display: flex;
   gap: 1rem;
   transition: transform 0.75s var(--ease-out);
-  will-change: transform;
 }
 
 .project-slider-track.is-dragging {
@@ -1545,7 +1504,6 @@ main section[id],
   position: relative;
   overflow: hidden;
   transform-style: preserve-3d;
-  will-change: transform;
 }
 
 .project-card::before {

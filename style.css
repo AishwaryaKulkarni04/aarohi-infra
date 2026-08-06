@@ -152,11 +152,6 @@ textarea {
   transition: transform 0.35s var(--ease-out);
 }
 
-.logo-frame::before,
-.logo-frame::after {
-  display: none;
-}
-
 .logo-img {
   position: relative;
   z-index: 1;
@@ -650,11 +645,6 @@ textarea {
   }
 }
 
-.brand-frame::before,
-.brand-frame::after {
-  display: none;
-}
-
 .brand-logo {
   position: relative;
   z-index: 1;
@@ -684,24 +674,6 @@ textarea {
 
 .brand-frame:hover .brand-logo {
   transform: scale(1.02);
-}
-
-.tagline {
-  margin: 1.35rem 0 0;
-  color: rgba(255, 255, 255, 0.92);
-  font-weight: 300;
-  letter-spacing: 0.16em;
-  font-size: clamp(0.85rem, 2vw, 1.05rem);
-  animation: rise-in 0.95s var(--ease-out) 0.95s both, tagline-glow 5s ease-in-out 2s infinite;
-}
-
-@keyframes tagline-glow {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.82; color: var(--gold-light); }
-}
-
-.tagline span {
-  color: var(--gold);
 }
 
 .cover-contacts {
@@ -1419,10 +1391,6 @@ main section[id],
   opacity: 0.85;
 }
 
-/* When real images are added later:
-   .photo-placeholder img { width:100%; height:100%; object-fit:cover; }
-*/
-
 .project-thumb img {
   width: 100%;
   height: 100%;
@@ -1497,6 +1465,11 @@ main section[id],
   width: 100%;
   height: 180px;
 }
+
+.project-slider-track .project-thumb--bliss img {
+  object-position: center 32%;
+}
+
 .project-slider-track .project-thumb--crown img {
   width: 100%;
   height: auto;
@@ -1606,13 +1579,6 @@ main section[id],
 
 .slider-dot:hover {
   background: rgba(212, 175, 55, 0.55);
-}
-
-/* ---------- Project cards (shared) ---------- */
-.project-cards {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
 }
 
 .project-card {

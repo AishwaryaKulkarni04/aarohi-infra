@@ -11,14 +11,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=52" />
+  <link rel="stylesheet" href="style.css?v=53" />
 </head>
 <body>
   <div class="scroll-progress" aria-hidden="true"><span></span></div>
   <header class="site-header">
     <a href="#home" class="logo">
       <span class="logo-frame">
-        <img src="assets/logo.png?v=52" alt="AAROHI Infra" class="logo-img" />
+        <img src="assets/logo.png?v=53" alt="AAROHI Infra" class="logo-img" />
       </span>
     </a>
 
@@ -66,7 +66,7 @@
             <span></span>
           </div>
           <div class="brand-frame">
-            <img src="assets/logo.png?v=52" alt="AAROHI Infra — Building The Future, Restoring The Past" class="brand-logo" />
+            <img src="assets/logo.png?v=53" alt="AAROHI Infra — Building The Future, Restoring The Past" class="brand-logo" />
           </div>
           <div class="brand-plinth" aria-hidden="true"></div>
         </div>
@@ -154,7 +154,7 @@
           <article class="team-card">
             <div class="team-photo-wrap">
               <div class="team-photo passport-photo" aria-label="Passport photo for Ameya Jadhav">
-                <img src="assets/team/ameya-jadhav.jpg?v=52" alt="Ameya Jadhav" width="350" height="450" loading="lazy" />
+                <img src="assets/team/ameya-jadhav.jpg?v=53" alt="Ameya Jadhav" width="350" height="450" loading="lazy" />
               </div>
             </div>
             <div class="team-meta">
@@ -165,7 +165,7 @@
           <article class="team-card">
             <div class="team-photo-wrap">
               <div class="team-photo passport-photo" aria-label="Passport photo for Rohan Pathak">
-                <img src="assets/team/rohan-pathak.png?v=52" alt="Rohan Pathak" width="350" height="450" loading="lazy" />
+                <img src="assets/team/rohan-pathak.png?v=53" alt="Rohan Pathak" width="350" height="450" loading="lazy" />
               </div>
             </div>
             <div class="team-meta">
@@ -176,7 +176,7 @@
           <article class="team-card">
             <div class="team-photo-wrap">
               <div class="team-photo passport-photo" aria-label="Passport photo for Hitesh Shewale">
-                <img src="assets/team/hitesh-shewale.jpg?v=52" alt="Hitesh Shewale" width="350" height="450" loading="lazy" />
+                <img src="assets/team/hitesh-shewale.jpg?v=53" alt="Hitesh Shewale" width="350" height="450" loading="lazy" />
               </div>
             </div>
             <div class="team-meta">
@@ -287,7 +287,7 @@
               </a>
               <a href="#proj-crown" class="project-card">
                 <div class="project-thumb project-thumb--crown">
-                  <img src="assets/projects/samarth-crown1.jpeg?v=52" alt="Samarth Crown residential building" loading="lazy" />
+                  <img src="assets/projects/samarth-crown1.jpeg?v=53" alt="Samarth Crown residential building" loading="lazy" />
                 </div>
                 <div class="project-card-text">
                   <h3>Samarth Crown</h3>
@@ -408,7 +408,7 @@
               </tr>
               <tr>
                 <td>8</td>
-                <td>B J Electricals</td>
+                <td>Jadhav Electricals</td>
                 <td>2025</td>
                 <td>Industrial Work</td>
                 <td>8260 sqft</td>
@@ -441,7 +441,7 @@
         </div>
         <div class="project-feature motion-stagger">
           <figure class="project-feature-photo project-feature-photo--bliss motion-item">
-            <img src="assets/projects/samarth-bliss.jpeg?v=52" alt="Samarth Bliss residential building by Aarohi Infra" loading="lazy" />
+            <img src="assets/projects/samarth-bliss.jpeg?v=53" alt="Samarth Bliss residential building by Aarohi Infra" loading="lazy" />
           </figure>
           <div class="project-feature-details project-feature-details--single">
             <div class="project-feature-stat motion-item">
@@ -459,7 +459,7 @@
         </div>
         <div class="project-feature motion-stagger">
           <figure class="project-feature-photo project-feature-photo--crown motion-item">
-            <img src="assets/projects/samarth-crown1.jpeg?v=52" alt="Samarth Crown residential building by Aarohi Infra" loading="lazy" />
+            <img src="assets/projects/samarth-crown1.jpeg?v=53" alt="Samarth Crown residential building by Aarohi Infra" loading="lazy" />
           </figure>
           <div class="project-feature-details project-feature-details--single">
             <div class="project-feature-stat motion-item">
@@ -649,22 +649,10 @@
     navTargets.forEach((section) => activeSectionObserver.observe(section));
 
     navLinks.forEach((link) => {
-      link.addEventListener("click", (event) => {
+      link.addEventListener("click", () => {
         const sectionId = link.getAttribute("href").slice(1);
-
-        if (sectionId === "home") {
-          event.preventDefault();
-          history.replaceState(null, "", "#home");
-          window.scrollTo({ top: 0, behavior: "smooth" });
-          setActiveNav("home");
-          return;
-        }
-
-        setActiveNav(sectionId);
-
-        const target = document.getElementById(sectionId);
-        if (target) {
-          target.classList.add("is-visible");
+        if (sectionId !== "home") {
+          setActiveNav(sectionId);
         }
       });
     });

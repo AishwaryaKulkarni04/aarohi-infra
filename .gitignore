@@ -4,3 +4,6 @@ Desktop.ini
 .DS_Store
 .vscode/
 *.log
+
+# Local dev dependencies (logo processing, etc.)
+node_modules/

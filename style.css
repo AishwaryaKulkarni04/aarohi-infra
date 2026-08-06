@@ -1785,6 +1785,7 @@ main section[id],
   box-shadow:
     0 28px 64px rgba(0, 0, 0, 0.5),
     0 0 0 1px rgba(212, 175, 55, 0.08) inset;
+  cursor: zoom-in;
 }
 
 .project-feature-photo::before {
@@ -1887,7 +1888,7 @@ main section[id],
     0 0 0 2px rgba(212, 175, 55, 0.35);
 }
 
-/* ---------- Project lightbox (desktop) ---------- */
+/* ---------- Project lightbox ---------- */
 body.lightbox-open {
   overflow: hidden;
 }
@@ -1977,9 +1978,59 @@ body.lightbox-open {
   border-top: 1px solid rgba(212, 175, 55, 0.25);
 }
 
-@media (min-width: 961px) {
+@media (max-width: 960px) {
   .project-feature-photo {
-    cursor: zoom-in;
+    aspect-ratio: auto;
+    max-width: min(360px, 92vw);
+    background: transparent;
+    box-shadow: none;
+    border: none;
+  }
+
+  .project-feature-photo::before,
+  .project-feature-photo::after {
+    display: none;
+  }
+
+  .project-feature-photo img {
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    object-position: center;
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    background: var(--section-surface);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  }
+
+  .project-feature-photo--crown img {
+    object-position: center;
+  }
+
+  .project-lightbox {
+    padding: 0.5rem;
+    padding-top: max(0.5rem, env(safe-area-inset-top));
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+
+  .project-lightbox-panel {
+    width: 100%;
+    max-height: 100dvh;
+  }
+
+  .project-lightbox-close {
+    top: max(0.35rem, env(safe-area-inset-top));
+    right: 0.35rem;
+    width: 48px;
+    height: 48px;
+  }
+
+  .project-lightbox-img {
+    max-height: calc(100dvh - 5.5rem);
+  }
+
+  .project-lightbox-caption {
+    font-size: 1rem;
+    padding: 0.75rem 0.5rem;
   }
 }
 
@@ -2249,7 +2300,7 @@ body.lightbox-open {
   }
 
   .project-feature-photo {
-    max-width: 320px;
+    max-width: min(360px, 92vw);
   }
 
   .team-showcase {

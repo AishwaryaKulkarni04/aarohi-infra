@@ -1446,25 +1446,16 @@ main section[id],
 
 .mission-shape {
   text-align: center;
-  color: var(--gold);
   position: relative;
   z-index: 1;
 }
 
-.mission-shape span {
+.mission-logo {
+  width: min(240px, 78%);
+  height: auto;
   display: block;
-  font-size: 1.8rem;
-  font-weight: 800;
-  letter-spacing: 0.2em;
-}
-
-.mission-shape small {
-  display: block;
-  margin-top: 0.5rem;
-  color: var(--muted);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-size: 0.72rem;
+  margin: 0 auto;
+  object-fit: contain;
 }
 
 .mission-copy {

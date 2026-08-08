@@ -725,7 +725,7 @@ textarea {
 }
 
 .brand-ledger-label {
-  margin: 0 0 0.35rem;
+  margin: 0.4rem 0 0;
   font-family: var(--font);
   font-size: 0.58rem;
   font-weight: 600;

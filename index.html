@@ -69,6 +69,43 @@
             <img src="assets/logo.png?v=61" alt="AAROHI Infra — Building The Future, Restoring The Past" class="brand-logo" />
           </div>
           <div class="brand-plinth" aria-hidden="true"></div>
+
+          <div class="brand-metrics" id="brand-ledger" aria-label="Company achievements">
+            <div class="brand-metrics-row">
+              <article class="brand-ledger-stat" data-stat="years" style="--i:0">
+                <p class="brand-ledger-label">Years of Excellence</p>
+                <p class="brand-ledger-value">
+                  <span class="brand-ledger-num">0</span><span class="brand-ledger-suffix brand-ledger-suffix--plus">+</span>
+                </p>
+              </article>
+              <span class="brand-metrics-divider" aria-hidden="true"></span>
+              <article class="brand-ledger-stat" data-stat="sqft" style="--i:1">
+                <p class="brand-ledger-label">Sq.Ft Developed</p>
+                <p class="brand-ledger-value">
+                  <span class="brand-ledger-num">0</span><span class="brand-ledger-suffix brand-ledger-suffix--sqft">K</span>
+                </p>
+              </article>
+              <span class="brand-metrics-divider" aria-hidden="true"></span>
+              <article class="brand-ledger-stat" data-stat="projects" style="--i:2">
+                <p class="brand-ledger-label">Projects</p>
+                <p class="brand-ledger-value">
+                  <span class="brand-ledger-num">0</span><span class="brand-ledger-suffix brand-ledger-suffix--plus">+</span>
+                </p>
+              </article>
+              <!-- <article class="brand-ledger-stat" data-stat="homes" style="--i:3">
+                <p class="brand-ledger-label">Homes Delivered</p>
+                <p class="brand-ledger-value">
+                  <span class="brand-ledger-num">0</span><span class="brand-ledger-suffix">+</span>
+                </p>
+              </article>
+              <article class="brand-ledger-stat" data-stat="clients" style="--i:4">
+                <p class="brand-ledger-label">Happy Clients</p>
+                <p class="brand-ledger-value">
+                  <span class="brand-ledger-num">0</span><span class="brand-ledger-suffix">+</span>
+                </p>
+              </article> -->
+            </div>
+          </div>
         </div>
       </div>
 
@@ -691,6 +728,69 @@
   <script>
     const enquiryForm = document.querySelector("#whatsapp-enquiry");
     const navLinks = [...document.querySelectorAll(".nav a[href^='#']")];
+
+    function computeCompanyStats() {
+      const rows = document.querySelectorAll(".projects-table tbody tr");
+      let jadhavOngoing = 0;
+
+      rows.forEach((row) => {
+        const cells = row.cells;
+        if (!cells || cells.length < 6) return;
+
+        const projectName = cells[1].textContent.trim().toLowerCase();
+        const isOngoing = Boolean(row.querySelector(".status.progress"));
+
+        if (isOngoing && projectName.includes("jadhav electricals")) jadhavOngoing++;
+      });
+
+      /* 8 projects + 2 Jadhav Electricals phases (same client) = 10+ */
+      const projects = rows.length + (jadhavOngoing >= 2 ? 2 : 0);
+
+      return {
+        years: Math.max(1, new Date().getFullYear() - 2019),
+        sqft: 75,
+        projects
+      };
+    }
+
+    function animateCount(el, target, stat, duration = 1400) {
+      const start = performance.now();
+
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(eased * target);
+        el.textContent = String(current);
+        if (progress < 1) requestAnimationFrame(tick);
+        else el.textContent = String(target);
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    function initBrandLedgerCounters() {
+      const ledger = document.querySelector("#brand-ledger");
+      if (!ledger) return;
+
+      const stats = computeCompanyStats();
+      const chips = ledger.querySelectorAll(".brand-ledger-stat");
+
+      ledger.classList.add("is-live");
+
+      chips.forEach((chip, index) => {
+        const stat = chip.dataset.stat;
+        const target = stats[stat] || 0;
+        const numEl = chip.querySelector(".brand-ledger-num");
+        if (!numEl) return;
+
+        window.setTimeout(() => {
+          chip.classList.add("is-counting");
+          animateCount(numEl, target, stat, stat === "sqft" ? 1800 : 1200);
+        }, 900 + index * 180);
+      });
+    }
+
+    initBrandLedgerCounters();
 
     enquiryForm.addEventListener("submit", (event) => {
       event.preventDefault();

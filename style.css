@@ -668,6 +668,137 @@ textarea {
   animation: rise-in 1s var(--ease-out) 0.7s both;
 }
 
+/* Stats — editorial spec strip below logo */
+.brand-metrics {
+  width: min(580px, 92vw);
+  margin: 1.35rem auto 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.65s var(--ease-out) 0.85s,
+    transform 0.65s var(--ease-out) 0.85s;
+}
+
+.brand-metrics.is-live {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.brand-metrics-row {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+}
+
+.brand-metrics-divider {
+  flex: 0 0 1px;
+  align-self: center;
+  width: 1px;
+  height: 2.4rem;
+  margin: 0 clamp(0.85rem, 3vw, 1.75rem);
+  background: rgba(212, 175, 55, 0.22);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.55s var(--ease-out) 1.05s;
+}
+
+.brand-metrics.is-live .brand-metrics-divider {
+  transform: scaleY(1);
+}
+
+.brand-ledger-stat {
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.5s var(--ease-out),
+    transform 0.5s var(--ease-out);
+  transition-delay: calc(1.1s + var(--i) * 0.12s);
+}
+
+.brand-metrics.is-live .brand-ledger-stat {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.brand-ledger-label {
+  margin: 0 0 0.35rem;
+  font-family: var(--font);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(184, 184, 184, 0.85);
+  line-height: 1.35;
+}
+
+.brand-ledger-value {
+  margin: 0;
+  line-height: 1;
+  font-family: var(--display);
+  color: var(--gold-light);
+}
+
+.brand-ledger-num {
+  font-size: clamp(1.55rem, 3.8vw, 2rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+.brand-ledger-suffix {
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  color: rgba(212, 175, 55, 0.8);
+  margin-left: 0.03em;
+}
+
+.brand-ledger-suffix--plus {
+  font-size: clamp(1.05rem, 2.6vw, 1.25rem);
+  font-weight: 500;
+}
+
+.brand-ledger-suffix--sqft {
+  font-weight: 500;
+}
+
+@media (max-width: 520px) {
+  .brand-metrics-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .brand-metrics-divider {
+    width: 2.5rem;
+    height: 1px;
+    margin: 0;
+    transform: scaleX(0);
+    transform-origin: center;
+  }
+
+  .brand-metrics.is-live .brand-metrics-divider {
+    transform: scaleX(1);
+  }
+
+  .brand-ledger-stat {
+    flex: none;
+    width: 100%;
+    max-width: 12rem;
+  }
+
+  .brand-ledger-num {
+    font-size: clamp(1.4rem, 6vw, 1.65rem);
+  }
+
+  .brand-ledger-label {
+    font-size: 0.52rem;
+    letter-spacing: 0.13em;
+  }
+}
+
 .brand-frame:hover {
   transform: translateY(-3px);
 }
@@ -2046,10 +2177,11 @@ figure.project-showcase-photo {
   }
 
   .project-showcase-card {
-    left: auto;
-    right: 0.85rem;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
     bottom: -1.25rem;
-    width: min(300px, 58%);
+    width: min(300px, 88vw);
     padding: 1rem 0.85rem 0.9rem;
     background:
       linear-gradient(160deg, rgba(212, 175, 55, 0.1), transparent 48%),
@@ -2074,18 +2206,21 @@ figure.project-showcase-photo {
   }
 
   .project-showcase-stats li {
-    padding: 0.45rem 0.15rem;
+    padding: 0.45rem 0.12rem;
     text-align: center;
+    min-width: 0;
   }
 
   .project-showcase-stat-value {
     font-size: 0.82rem;
     line-height: 1.1;
+    word-break: break-word;
   }
 
   .project-showcase-stat-label {
-    font-size: 0.52rem;
-    margin-top: 0.15rem;
+    font-size: 0.5rem;
+    letter-spacing: 0.08em;
+    line-height: 1.25;
   }
 }
 
@@ -2530,19 +2665,51 @@ body.lightbox-open {
   .cover-contacts {
     grid-template-columns: 1fr;
     width: 100%;
+    padding: 0 1rem;
+    justify-items: center;
   }
 
-  .phone-contact,
-  .address-contact,
-  .email-contact {
+  .phone-contact {
     grid-column: 1;
+    width: auto;
+    max-width: min(360px, 92vw);
     justify-self: center;
     justify-content: center;
     text-align: center;
+    gap: 0.5rem;
+  }
+
+  .address-contact,
+  .email-contact {
+    grid-column: 1;
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: auto;
+    max-width: min(320px, 88vw);
+    justify-self: center;
+    text-align: center;
+    gap: 0.45rem;
+  }
+
+  .address-contact span:last-child,
+  .email-contact span:last-child {
+    text-align: center;
+    flex: 1;
+    min-width: 0;
+    line-height: 1.45;
+  }
+
+  .address-contact .icon,
+  .email-contact .icon {
+    margin-top: 0.2em;
   }
 
   .contact-line .icon {
     margin-top: 0;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
   }
 
   .gallery-grid {

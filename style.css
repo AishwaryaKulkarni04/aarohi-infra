@@ -1451,7 +1451,7 @@ main section[id],
 }
 
 .mission-logo {
-  width: min(240px, 78%);
+  width: min(180px, 78%);
   height: auto;
   display: block;
   margin: 0 auto;

@@ -1833,6 +1833,12 @@ main section[id],
   color: var(--gold);
 }
 
+.status.upcoming {
+  background: rgba(212, 175, 55, 0.12);
+  color: var(--gold-light);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
 /* ---------- Project galleries ---------- */
 .project-galleries {
   background:
@@ -2071,6 +2077,12 @@ figure.project-showcase-photo {
   color: var(--gold-light);
   background: linear-gradient(135deg, rgba(26, 26, 26, 0.92), rgba(10, 10, 10, 0.95));
   border-color: rgba(212, 175, 55, 0.55);
+}
+
+.project-showcase-badge--upcoming {
+  color: var(--black);
+  background: linear-gradient(135deg, rgba(255, 242, 200, 0.95), var(--gold));
+  border-color: rgba(255, 255, 255, 0.35);
 }
 
 .project-showcase-card {

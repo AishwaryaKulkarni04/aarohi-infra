@@ -764,7 +764,28 @@ textarea {
   font-weight: 500;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 700px) {
+  .brand-metrics {
+    width: min(580px, 96vw);
+  }
+
+  .brand-metrics-divider {
+    height: 2rem;
+    margin: 0 clamp(0.3rem, 2vw, 0.55rem);
+  }
+
+  .brand-ledger-label {
+    font-size: clamp(0.48rem, 2.1vw, 0.54rem);
+    letter-spacing: 0.09em;
+    padding: 0 0.12rem;
+  }
+
+  .brand-ledger-num {
+    font-size: clamp(1.35rem, 4.5vw, 1.55rem);
+  }
+}
+
+@media (max-width: 575px) {
   .brand-metrics-row {
     flex-direction: column;
     align-items: center;
@@ -795,7 +816,7 @@ textarea {
 
   .brand-ledger-label {
     font-size: 0.52rem;
-    letter-spacing: 0.13em;
+    letter-spacing: 0.12em;
   }
 }
 
@@ -1816,11 +1837,15 @@ main section[id],
 
 .status {
   display: inline-block;
+  box-sizing: border-box;
   padding: 0.2rem 0.55rem;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  line-height: 1.25;
+  text-align: center;
+  max-width: 100%;
 }
 
 .status.done {
@@ -2156,7 +2181,7 @@ figure.project-showcase-photo {
   color: var(--muted);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 960px) {
   .project-showcase {
     padding-bottom: 2.75rem;
   }
@@ -2174,22 +2199,63 @@ figure.project-showcase-photo {
   }
 }
 
-@media (max-width: 767px) {
+/* Overlay card on image — right-aligned; motion-in must not break position (no translateX center hack). */
+@media (max-width: 959px) {
   .project-showcase {
-    padding-bottom: 2rem;
+    padding: 1.15rem 4vw 0.75rem;
+    overflow-x: clip;
+  }
+
+  .project-showcase-frame {
+    padding-bottom: 4.75rem;
+    margin-bottom: 0.5rem;
   }
 
   .project-showcase-card {
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    bottom: -1.25rem;
-    width: min(300px, 88vw);
-    padding: 1rem 0.85rem 0.9rem;
+    position: absolute;
+    left: auto;
+    right: 0.65rem;
+    bottom: -1rem;
+    width: min(300px, calc(100% - 1.3rem));
+    max-width: calc(100% - 1.3rem);
+    margin: 0;
+    padding: 1rem 0.9rem 0.9rem;
     background:
       linear-gradient(160deg, rgba(212, 175, 55, 0.1), transparent 48%),
       var(--section-surface-raised);
     backdrop-filter: none;
+    box-sizing: border-box;
+  }
+
+  .project-showcase-card.motion-item {
+    transform: translateY(var(--motion-y)) scale(0.96);
+  }
+
+  .project-showcase-card.motion-item.motion-in {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 767px) {
+  .project-showcase-photo,
+  .project-showcase-photo img {
+    min-height: 180px;
+  }
+
+  .project-showcase-badge {
+    top: 0.65rem;
+    left: 0.65rem;
+    font-size: 0.58rem;
+    padding: 0.28rem 0.62rem;
+    letter-spacing: 0.1em;
+  }
+
+  .project-showcase-card {
+    right: 0.5rem;
+    bottom: -0.85rem;
+    width: min(288px, calc(100% - 1rem));
+    max-width: calc(100% - 1rem);
+    padding: 0.95rem 0.8rem 0.85rem;
   }
 
   .project-showcase-eyebrow {
@@ -2621,6 +2687,81 @@ body.lightbox-open {
 }
 
 @media (max-width: 700px) {
+  .table-wrap {
+    width: 100%;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .projects-table {
+    min-width: 520px;
+    font-size: 0.8rem;
+  }
+
+  .projects-table th,
+  .projects-table td {
+    padding: 0.65rem 0.45rem;
+    vertical-align: middle;
+  }
+
+  .projects-table th {
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+  }
+
+  .projects-table td:nth-child(2) {
+    min-width: 7.5rem;
+    word-break: break-word;
+  }
+
+  .status {
+    font-size: 0.58rem;
+    letter-spacing: 0.03em;
+    padding: 0.22rem 0.4rem;
+    max-width: 6.25rem;
+  }
+
+  .project-slider-viewport {
+    padding: 0.65rem;
+  }
+
+  .project-slider-track .project-card-text {
+    padding: 0.75rem 0.85rem 0.95rem;
+  }
+
+  .project-slider-track .project-card-text h3 {
+    font-size: 0.94rem;
+    line-height: 1.3;
+  }
+
+  .project-slider-track .project-card-text p {
+    font-size: 0.76rem !important;
+    line-height: 1.45;
+  }
+
+  .section-bar h2 {
+    letter-spacing: 0.12em;
+    text-indent: 0;
+    font-size: clamp(0.92rem, 4vw, 1.15rem);
+    line-height: 1.4;
+    padding: 0 0.35rem;
+  }
+
+  .content-inner.wide {
+    padding-left: 4vw;
+    padding-right: 4vw;
+  }
+
+  .mission-copy {
+    padding-left: 4vw;
+    padding-right: 4vw;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
   .site-header {
     flex-wrap: wrap;
     justify-content: center;
